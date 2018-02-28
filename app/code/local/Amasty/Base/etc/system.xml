@@ -17,7 +17,7 @@
         </amasty>
     </tabs>
     <sections>
-        <amstore>
+<!--        <amstore>
             <label><![CDATA[Extensions Store]]></label>
             <tab>amasty</tab>
             <class>amasty-store-tab</class>
@@ -104,6 +104,6 @@
                     <show_in_store>1</show_in_store>
                 </conflicts>
             </groups>
-        </ambase>
+        </ambase>-->
     </sections>
 </config>
