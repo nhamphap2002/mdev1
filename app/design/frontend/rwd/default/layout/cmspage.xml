@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+ 
+<layout version="0.1.0">
+    <default>
+        <reference name="before_body_end">
+            <block type="cmspage/cmspage" name="cmspage" template="cmspage/cmspage.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="cmspage" template="cmspage/cmspage.phtml">
+            </block>
+        </reference>
+    </default>
+     
+</layout>
