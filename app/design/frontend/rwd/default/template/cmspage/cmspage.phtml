@@ -29,7 +29,12 @@
 
 $isShowpage = Mage::getBlockSingleton('cms/page')->getPage()->getIsShowpage();
 if ($isShowpage) {
-    $redirect_url = Mage::getUrl('customer/account/login');
-    Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
+    if (!Mage::getSingleton('customer/session')->isLoggedIn()) {
+        $redirect_url = Mage::getUrl('customer/account/login');
+        Mage::getSingleton('customer/session')->setBeforeAuthUrl($this->helper('core/url')->getCurrentUrl());
+        Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
+    } else {
+        // logged in
+    }
 }
 ?>
