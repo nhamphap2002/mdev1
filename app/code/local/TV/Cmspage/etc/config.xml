@@ -30,7 +30,7 @@
             </tvcmspage>
         </models>
         <events>
-            <adminhtml_cms_page_edit_tab_content_prepare_form>
+            <adminhtml_cms_page_edit_tab_main_prepare_form>
                 <observers>
                     <tvcmspage_page_edit_tab_content>
                         <type>singleton</type>
@@ -38,7 +38,7 @@
                         <method>cmsField</method>
                     </tvcmspage_page_edit_tab_content>
                 </observers>
-            </adminhtml_cms_page_edit_tab_content_prepare_form>
+            </adminhtml_cms_page_edit_tab_main_prepare_form>
             <cms_page_prepare_save>
                 <observers>
                     <tvcmspage_cms_page_save_after>

@@ -19,12 +19,12 @@ class TV_Cmspage_Model_Observer {
         //get form instance
         $form = $observer->getForm();
         //create new custom fieldset 'tv_content_fieldset'
-        $fieldset = $form->addFieldset('tv_content_fieldset', array('legend' => Mage::helper('cms')->__('Is show page'), 'class' => 'fieldset-wide'));
+        $fieldset = $form->addFieldset('tv_content_fieldset', array('legend' => Mage::helper('cms')->__('Have To Login?'), 'class' => 'fieldset-wide'));
         //add new field
         $fieldset->addField('is_showpage', 'select', array(
             'name' => 'is_showpage',
-            'label' => Mage::helper('cms')->__('On/OFF Login function'),
-            'title' => Mage::helper('cms')->__('On/OFF Login function'),
+            'label' => Mage::helper('cms')->__('Select an Option'),
+            'title' => Mage::helper('cms')->__('Select an Option'),
             'disabled' => false,
             //set field value
             'value' => $model->getIsShowpage(),
