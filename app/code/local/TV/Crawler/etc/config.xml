@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TV_Crawler>
+            <version>0.1.0</version>
+        </TV_Crawler>
+    </modules>
+</config> 
