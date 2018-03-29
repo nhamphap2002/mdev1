@@ -5,7 +5,7 @@
             <version>0.1.0</version>
         </TV_Cmspage>
     </modules>
-     <frontend>
+    <frontend>
         <routers>
             <articles>
                 <use>standard</use>
@@ -24,6 +24,16 @@
         </layout>
     </frontend>
     <global>
+        <blocks>
+            <cmspage>
+                <class>TV_Cmspage_Block</class>
+            </cmspage>
+            <adminhtml>
+                <rewrite>
+                    <customer_grid>TV_Cmspage_Block_Adminhtml_Customer_Grid</customer_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
         <models>
             <tvcmspage>
                 <class>TV_Cmspage_Model</class>
