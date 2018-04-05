@@ -1,89 +1,89 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <TV_Cmspage>
+        <TV_Cmspagelogin>
             <version>0.1.0</version>
-        </TV_Cmspage>
+        </TV_Cmspagelogin>
     </modules>
     <frontend>
         <routers>
             <articles>
                 <use>standard</use>
                 <args>
-                    <module>TV_Cmspage</module>
-                    <frontName>cmspage</frontName>
+                    <module>TV_Cmspagelogin</module>
+                    <frontName>cmspagelogin</frontName>
                 </args>
             </articles>
         </routers>
         <layout>
             <updates>
                 <articles>
-                    <file>cmspage.xml</file> <!-- our layout file name -->
+                    <file>cmspagelogin.xml</file> <!-- our layout file name -->
                 </articles>
             </updates>
         </layout>
     </frontend>
     <global>
         <blocks>
-            <cmspage>
-                <class>TV_Cmspage_Block</class>
-            </cmspage>
+            <cmspagelogin>
+                <class>TV_Cmspagelogin_Block</class>
+            </cmspagelogin>
             <adminhtml>
                 <rewrite>
-                    <customer_grid>TV_Cmspage_Block_Adminhtml_Customer_Grid</customer_grid>
+                    <customer_grid>TV_Cmspagelogin_Block_Adminhtml_Customer_Grid</customer_grid>
                 </rewrite>
             </adminhtml>
         </blocks>
         <models>
-            <tvcmspage>
-                <class>TV_Cmspage_Model</class>
-            </tvcmspage>
+            <tvcmspagelogin>
+                <class>TV_Cmspagelogin_Model</class>
+            </tvcmspagelogin>
         </models>
         <events>
             <adminhtml_cms_page_edit_tab_main_prepare_form>
                 <observers>
-                    <tvcmspage_page_edit_tab_content>
+                    <tvcmspagelogin_page_edit_tab_content>
                         <type>singleton</type>
-                        <class>TV_Cmspage_Model_Observer</class>
+                        <class>TV_Cmspagelogin_Model_Observer</class>
                         <method>cmsField</method>
-                    </tvcmspage_page_edit_tab_content>
+                    </tvcmspagelogin_page_edit_tab_content>
                 </observers>
             </adminhtml_cms_page_edit_tab_main_prepare_form>
             <cms_page_prepare_save>
                 <observers>
-                    <tvcmspage_cms_page_save_after>
+                    <tvcmspagelogin_cms_page_save_after>
                         <type>singleton</type>
-                        <class>tvcmspage/observer</class>
+                        <class>tvcmspagelogin/observer</class>
                         <method>cmsPageSaveAfter</method>
-                    </tvcmspage_cms_page_save_after>
+                    </tvcmspagelogin_cms_page_save_after>
                 </observers>
             </cms_page_prepare_save>
         </events>
         
         <helpers>
-            <cmspage>
-                <class>TV_Cmspage_Helper</class>
-            </cmspage>
+            <cmspagelogin>
+                <class>TV_Cmspagelogin_Helper</class>
+            </cmspagelogin>
         </helpers>
         <resources>
-            <cmspage_setup>
+            <cmspagelogin_setup>
                 <setup>
-                    <module>TV_Cmspage</module>
+                    <module>TV_Cmspagelogin</module>
                 </setup>
                 <connection>
                     <use>core_setup</use>
                 </connection>
-            </cmspage_setup>
-            <cmspage_write>
+            </cmspagelogin_setup>
+            <cmspagelogin_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
-            </cmspage_write>
-            <cmspage_read>
+            </cmspagelogin_write>
+            <cmspagelogin_read>
                 <connection>
                     <use>core_read</use>
                 </connection>
-            </cmspage_read>
+            </cmspagelogin_read>
         </resources>
     </global>
 </config> 

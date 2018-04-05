@@ -7,7 +7,7 @@
  * Skype: trantrongthang1207
  */
 
-class TV_Cmspage_Block_Adminhtml_Customer_Grid extends Mage_Adminhtml_Block_Customer_Grid {
+class TV_Cmspagelogin_Block_Adminhtml_Customer_Grid extends Mage_Adminhtml_Block_Customer_Grid {
 
     public function setCollection($collection) {
         // fetching fax from billing address

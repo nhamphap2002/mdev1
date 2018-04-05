@@ -7,7 +7,7 @@
  * Skype: trantrongthang1207
  */
 
-class TV_Cmspage_Model_Observer {
+class TV_Cmspagelogin_Model_Observer {
 
     public function cmsField($observer) {
 
