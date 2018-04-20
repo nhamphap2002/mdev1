@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_Gcrawler>
+            <version>0.1.0</version>
+        </Mgroup_Gcrawler>
+    </modules>
+    <global>
+        <helpers>
+            <gcrawler>
+                <class>Mgroup_Gcrawler_Helper</class>
+            </gcrawler>
+        </helpers>
+    </global>
+</config> 

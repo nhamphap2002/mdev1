@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_ShippingRate>
+            <version>0.1.0</version>
+        </Mgroup_ShippingRate>
+    </modules>
+    <admin>
+      <routers>
+          <adminhtml>
+              <args>
+                  <modules>
+                      <shippingrate after="Mage_Adminhtml">Mgroup_ShippingRate_Adminhtml</shippingrate>
+                  </modules>
+              </args>
+          </adminhtml>
+      </routers>
+   </admin>
+    <global>
+        <helpers>
+            <shippingrate>
+                <class>Mgroup_ShippingRate_Helper</class>
+            </shippingrate>
+        </helpers>
+        <blocks>
+            <shippingrate>
+                <class>Mgroup_ShippingRate_Block</class>
+            </shippingrate>
+        </blocks>
+        <models>
+      
+        </models>
+    </global>
+</config>
