@@ -10,6 +10,22 @@
             <gcrawler>
                 <class>Mgroup_Gcrawler_Helper</class>
             </gcrawler>
+            <variables>
+                <class>Mgroup_Gcrawler_Helper</class>
+            </variables>
         </helpers>
+        <events>
+            <controller_front_send_response_before>
+                <observers>
+                    <gcrawler>
+                        <type>singleton</type>
+                        <class>
+                            Mgroup_Gcrawler_Helper_Observer
+                        </class>
+                        <method>parseCustomVars</method>
+                    </gcrawler>
+                </observers>
+            </controller_front_send_response_before>  
+        </events>
     </global>
 </config> 

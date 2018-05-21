@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+	<config>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<mgroup_recaptcha translate="title" module="recaptcha">
+											<title>Google Recaptcha Section</title>
+											<sort_order>0</sort_order>
+										</mgroup_recaptcha>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</config>

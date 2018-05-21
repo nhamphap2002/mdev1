@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_Recaptcha>
+            <version>0.1.0</version>
+        </Mgroup_Recaptcha>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <notification_bar>
+                    <file>mgroup/recaptcha.xml</file>
+                </notification_bar>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <helpers>
+            <recaptcha>
+                <class>Mgroup_Recaptcha_Helper</class>
+            </recaptcha>
+        </helpers>
+        <models>
+            <recaptcha>
+                <class>Mgroup_Recaptcha_Model</class>
+                <resourceModel>recaptcha_mysql4</resourceModel>
+            </recaptcha>
+        </models>
+        <events>
+            <controller_action_predispatch_customer_account_createpost> <!-- identifier of the event we want to catch -->
+                <observers>
+                    <controller_action_predispatch_customer_account_createpost_handler> <!-- identifier of the event handler -->
+                        <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+                        <class>recaptcha/observer</class> <!-- observers class alias -->
+                        <method>Validate_Captcha</method>  <!-- observer's method to be called -->
+                        <args></args> <!-- additional arguments passed to observer -->
+                    </controller_action_predispatch_customer_account_createpost_handler>
+                </observers>
+            </controller_action_predispatch_customer_account_createpost>
+
+        </events>
+    </global>
+</config> 

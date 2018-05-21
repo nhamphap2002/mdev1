@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <mgroup_recaptcha translate="label">
+            <label>Recaptcha</label>
+            <sort_order>1</sort_order>
+        </mgroup_recaptcha>
+    </tabs>
+    <sections>
+        <mgroup_recaptcha  translate="label" module="recaptcha">                    
+            <label>Google Recaptcha</label>
+            <tab>mgroup_recaptcha</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>            
+            <groups>
+                <general translate="label"> 
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sitekey translate="label">
+                            <label>Site Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sitekey>
+                        <secretkey translate="label">
+                            <label>Secret Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secretkey>
+                    </fields>
+                </general>
+            </groups>
+        </mgroup_recaptcha>
+    </sections>
+</config>
