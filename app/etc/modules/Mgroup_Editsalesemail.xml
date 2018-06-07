@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Mgroup_Editsalesemail>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>1.0.0</version>
+    </Mgroup_Editsalesemail>
+  </modules>
+</config>
