@@ -1,0 +1,38 @@
+<?php
+$arr_year = array();
+$current_year = date('Y');
+for ($i = $current_year; $i >= 1955; $i--) {
+    $arr_year[] = $i;
+}
+?>
+<table width="100%" class="yearlist">
+
+    <tbody><tr>
+            <?php
+            foreach ($arr_year as $k => $year) {
+                ?>
+                <td>							
+                    <font face="Arial" size="2"><b>
+                        <a target="" class="subcategory_link" href="make?values[]=<?php echo $year; ?>" title=""><span class="subcategory_name"><?php echo $year; ?></span></a>
+
+                    </b></font></td>
+
+                <td width="5%"></td>
+
+                <?php
+                if (($k + 1) % 6 == 0) {
+                    ?>
+                </tr><tr>
+                <?php } ?>
+
+            <?php } ?>
+
+        </tr></tbody></table>
+<style>
+    a.subcategory_link::before {
+    content: "•";
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+</style>

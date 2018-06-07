@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+	<config>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<shipping_rate translate="title" module="shippingrate">
+											<title>Shipping Rate Section</title>
+											<sort_order>0</sort_order>
+										</shipping_rate>
+										<best_featured translate="title" module="shippingrate">
+											<title>Best Sellers and Featured Products</title>
+											<sort_order>0</sort_order>
+										</best_featured>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</config>

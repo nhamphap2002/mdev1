@@ -1,0 +1,46 @@
+<?php
+$categoryId =  $this->getRequest()->getParam('cat');
+$category = Mage::getModel('catalog/category')->load((int) $categoryId);
+$categoriesOption = Mage::getSingleton('partfinder/categorylayer')->checkSubCategories($category);
+//Zend_Debug::dump($categoriesOption);
+$year = $this->getRequest()->getParam('year');
+$make = $this->getRequest()->getParam('make');
+$model = $this->getRequest()->getParam('model');
+$submodel = $this->getRequest()->getParam('submodel');
+?>
+<div class="page-title">
+    <h3><?php echo $this->__('Part #s and Upgrades available for: %s', $year. ' '. $make.' '.$model) ?></h3>
+</div>
+
+<table class="data-table" id="my-products-table">
+    <thead>
+    <tr>
+        <th><?php echo $this->__('Application') ?></th>
+        <th><?php echo $this->__('Part #') ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php $_odd = ''; ?>
+    <?php foreach ($categoriesOption as $item): ?>
+        <tr>
+            <td style="vertical-align: top"><?php echo $category->getName(); ?></td>
+            <td style="vertical-align: top">
+                <a href="<?php echo $this->getUrl('partfinder/product/listdetail').'?year='.$year.'&make='.$make.'&model='.$model.'&submodel='.$submodel.'&cat='.$item['id']?>" >
+                    <?php
+                        $catchild = Mage::getModel('catalog/category')->load((int) $item['id']);
+                        $_imgUrl =  $catchild->getImageUrl();
+                        $_imgHtml= '';
+                        if($_imgUrl){
+                            $_imgHtml = '<img width="62" height="62" src="'.$_imgUrl.'" alt="'.$this->htmlEscape($catchild->getName()).'" title="'.$this->htmlEscape($catchild->getName()).'" />';
+                            echo $_imgHtml.'&nbsp;'.$item['title'];
+                        }else{
+                            echo $item['title'];
+                        }
+                    ?>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-products-table')</script>

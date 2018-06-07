@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<layout>
+
+    <default>
+      <reference name="head">
+        <action method="addCss"><stylesheet>pektsekye/partfinder/main.css</stylesheet></action>		
+        <action method="addItem"><type>skin_js</type><name>pektsekye/partfinder/main.js</name></action>			
+      </reference>   
+    </default>	
+ 
+    <!--<cms_index_index>
+        <reference name="content">
+            <block type="partfinder/selector" name="partfinder_selector" before="-" template="partfinder/horizontal_selector.phtml"/>        
+        </reference>   
+    </cms_index_index>-->
+    <!--<catalog_category_view>
+        <reference name="left">
+            <block type="partfinder/selector" name="partfinder_selector" before="-" template="partfinder/horizontal_selector.phtml"/>
+        </reference>
+    </catalog_category_view>-->
+   
+	  <partfinder_product_list>
+          <reference name="root">
+              <action method="setTemplate"><template>page/1column.phtml</template></action>
+          </reference>
+        <reference name="content">
+            <block type="partfinder/selector" name="partfinder_selector" before="-" template="partfinder/horizontal_selector_page.phtml"/>
+            <block type="core/template" name="search.result" template="partfinder/lastcategoryselector.phtml"/>
+        </reference>
+    </partfinder_product_list>
+
+    <partfinder_product_listdetail>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <!--<block type="partfinder/selector" name="partfinder_selector" before="-" template="partfinder/horizontal_selector_page.phtml"/>-->
+            <block type="partfinder/product_list" name="search.result" template="catalogsearch/result.phtml">
+                <block type="catalog/product_list" name="search_result_list" template="catalog/product/list.phtml">
+                    <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                </block>
+                <action method="setListOrders"/>
+                <action method="setListModes"/>
+                <action method="setListCollection"/>
+            </block>
+        </reference>
+    </partfinder_product_listdetail>
+
+</layout>

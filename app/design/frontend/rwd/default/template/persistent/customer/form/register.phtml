@@ -169,6 +169,8 @@
                 <?php echo $this->getChildHtml('persistent.remember.me'); ?>
             </ul>
             <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="<?php echo Mage::getStoreConfig("mgroup_recaptcha/general/sitekey")?>"></div>
         </div>
         <div class="buttons-set">
             <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back-link"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>

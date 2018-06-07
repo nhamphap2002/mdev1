@@ -1,0 +1,62 @@
+<?php
+$categoryId =  $this->getRequest()->getParam('cat');
+//$category = Mage::getModel('catalog/category')->load((int) $categoryId);
+//$categoriesOption = Mage::getSingleton('partfinder/categorylayer')->checkSubCategories($category);
+//Zend_Debug::dump($categoriesOption);
+$year = $this->getRequest()->getParam('year');
+$make = $this->getRequest()->getParam('make');
+$model = $this->getRequest()->getParam('model');
+$submodel = $this->getRequest()->getParam('submodel');
+
+
+$categoriesOption = Mage::getSingleton('partfinder/categorylayer')->checkSubCategories(null);
+//Zend_Debug::dump($categoriesOption);
+$identifier = trim(Mage::app()->getRequest()->getPathInfo(), '/');
+$identifier = str_replace('.html', '', $identifier);
+$isSecure = Mage::app()->getStore()->isCurrentlySecure();
+$baseUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK, $isSecure);
+
+?>
+<div class="page-title">
+    <h3><?php echo $this->__('Part #s and Upgrades available for: %s', $year. ' '. $make.' '.$model) ?></h3>
+</div>
+
+<table class="data-table" id="my-products-table">
+    <thead>
+    <tr>
+        <th width="50%"><?php echo $this->__('Application') ?></th>
+        <th><?php echo $this->__('Click On Part #') ?></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php $_odd = ''; ?>
+    <?php foreach ($categoriesOption as $item): ?>
+        <?php
+            $categoryParent = Mage::getModel('catalog/category')->load($item['id']);
+            $subCategoriesOption = Mage::getSingleton('partfinder/categorylayer')->checkSubCategories($categoryParent);
+        ?>
+        <?php foreach ($subCategoriesOption as $el): ?>
+            <tr>
+                <td style="vertical-align: top"><?php echo $item['title']; ?></td>
+                <td style="vertical-align: top">
+                    <a href="<?php echo $baseUrl.$identifier.'/'.$el['id'].'/'.$el['title'].'.html' ?>" >
+                        <?php
+                        $catchild = Mage::getModel('catalog/category')->load((int) $el['id']);
+                        $_imgUrl =  $catchild->getImageUrl();
+                        $_imgHtml= '';
+                        if($_imgUrl){
+                            $_imgHtml = '<img width="62" height="62" src="'.$_imgUrl.'" alt="'.$this->htmlEscape($catchild->getName()).'" title="'.$this->htmlEscape($catchild->getName()).'" />';
+                            echo $_imgHtml.'&nbsp;'.$el['title'];
+                        }else{
+                            echo $el['title'];
+                        }
+                        ?>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-products-table1')</script>

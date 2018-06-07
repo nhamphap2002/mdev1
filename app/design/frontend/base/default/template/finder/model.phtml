@@ -1,0 +1,47 @@
+<?php
+
+function replaceValues($value) {
+    return str_replace(array(' ', '/', '(', ')'), array('-', '-', '', ''), $value);
+}
+
+$selectedValues = (array) $this->getRequest()->getParam('values');
+$data = Mage::getModel('partfinder/selector')->fetchColumnValues($selectedValues);
+$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+if (isset($_REQUEST['values']) && count($_REQUEST['values']) > 0) {
+    $count = count($_REQUEST['values']);
+    $values = $_REQUEST['values'];
+}
+//$helper_finder = Mage::helper('finder');
+?>
+<table width="100%" class="yearlist">
+
+    <tbody>
+        <?php
+        foreach ($data as $k=>$item) {
+            $make = replaceValues($values[1]);
+            //$model = replaceValues($values[2]);
+            $submodel = replaceValues($item);
+            $link = Mage::getBaseUrl() . $values[0] . '-' . $make . '-' . $submodel . '-All-Type.html';
+            ?>
+        <td>							
+            <font face="Arial" size="2"><b>
+                <a target="" class="subcategory_link" href="<?php echo $link ?>" title=""><span class="subcategory_name"><?php echo $item; ?></span></a>
+            </b></font></td>
+
+        <td width="5%"></td>
+        <?php
+        if (($k + 1) % 6 == 0) {
+            ?>
+        </tr><tr>
+    <?php } ?>
+<?php } ?>
+
+</tbody></table>
+<style>
+    a.subcategory_link::before {
+        content: "•";
+        display: inline-block;
+        margin-right: 4px;
+        vertical-align: middle;
+    }
+</style>
