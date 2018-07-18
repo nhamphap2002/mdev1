@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TV_Countdown>
+            <version>0.0.1</version>
+        </TV_Countdown>
+    </modules>
+    <global>
+        <resources>
+            <countdown_setup>
+                <setup>
+                    <module>TV_Countdown</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>default_setup</use>
+                </connection>
+            </countdown_setup>
+        </resources>
+    </global>
+</config>

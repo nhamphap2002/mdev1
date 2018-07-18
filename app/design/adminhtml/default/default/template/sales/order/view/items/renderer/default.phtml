@@ -40,7 +40,7 @@
         endif;
         $productId = $_item->getData('product_id');
         $product = Mage::getModel('catalog/product')->load($productId);
-        echo $product->getData('ks_vrn');
+        echo "KS varenummer: " . $product->getData('ks_vrn');
         ?>
     </td>
     <td class="a-center"><?php echo $_item->getStatus() ?></td>

@@ -23,7 +23,6 @@
  * @copyright   Copyright (c) 2006-2017 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
-
 /**
  * Product view template
  *
@@ -39,7 +38,7 @@
 <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
 <div class="product-view">
     <div class="product-essential">
-        <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
             <?php echo $this->getBlockHtml('formkey') ?>
             <div class="no-display">
                 <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
@@ -65,26 +64,26 @@
                 </div>
 
                 <div class="extra-info">
-                    <?php echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
+                    <?php echo $this->getReviewsSummaryHtml($_product, 'default', false) ?>
                     <?php echo $this->getChildHtml('product_type_availability'); ?>
                 </div>
 
                 <?php echo $this->getChildHtml('alert_urls') ?>
 
-                <?php if ($_product->getShortDescription()):?>
+                <?php if ($_product->getShortDescription()): ?>
                     <div class="short-description">
                         <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
 
 
 
 
-                <?php echo $this->getChildHtml('other');?>
+                <?php echo $this->getChildHtml('other'); ?>
 
-                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
                     <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                <?php endif;?>
+                <?php endif; ?>
 
             </div>
 
@@ -92,11 +91,11 @@
                 <?php echo $this->getChildHtml('product_type_data') ?>
                 <?php echo $this->getChildHtml('extrahint') ?>
 
-                <?php if (!$this->hasOptions()):?>
+                <?php if (!$this->hasOptions()): ?>
                     <div class="add-to-box">
-                        <?php if($_product->isSaleable()): ?>
+                        <?php if ($_product->isSaleable()): ?>
                             <?php echo $this->getChildHtml('addtocart') ?>
-                            <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                            <?php if ($this->helper('wishlist')->isAllow() || $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
                                 <span class="or"><?php echo $this->__('OR') ?></span>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -115,20 +114,20 @@
             <?php echo $this->getChildHtml('related_products') ?>
 
             <div class="clearer"></div>
-            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php if ($_product->isSaleable() && $this->hasOptions()): ?>
                 <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-            <?php endif;?>
+            <?php endif; ?>
         </form>
         <script type="text/javascript">
-        //<![CDATA[
+            //<![CDATA[
             var productAddToCartForm = new VarienForm('product_addtocart_form');
-            productAddToCartForm.submit = function(button, url) {
+            productAddToCartForm.submit = function (button, url) {
                 if (this.validator.validate()) {
                     var form = this.form;
                     var oldUrl = form.action;
 
                     if (url) {
-                       form.action = url;
+                        form.action = url;
                     }
                     var e = null;
                     try {
@@ -146,8 +145,8 @@
                 }
             }.bind(productAddToCartForm);
 
-            productAddToCartForm.submitLight = function(button, url){
-                if(this.validator) {
+            productAddToCartForm.submitLight = function (button, url) {
+                if (this.validator) {
                     var nv = Validation.methods;
                     delete Validation.methods['required-entry'];
                     delete Validation.methods['validate-one-required'];
@@ -168,19 +167,19 @@
                     Object.extend(Validation.methods, nv);
                 }
             }.bind(productAddToCartForm);
-        //]]>
+            //]]>
         </script>
     </div>
 
     <div class="product-collateral toggle-content tabs">
-        <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+        <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')): ?>
             <dl id="collateral-tabs" class="collateral-tabs">
-                <?php foreach ($detailedInfoGroup as $alias => $html):?>
+                <?php foreach ($detailedInfoGroup as $alias => $html): ?>
                     <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
                     <dd class="tab-container">
                         <div class="tab-content"><?php echo $html ?></div>
                     </dd>
-                <?php endforeach;?>
+                <?php endforeach; ?>
             </dl>
         <?php endif; ?>
     </div>
@@ -189,3 +188,129 @@
     <?php echo $this->getChildHtml('product_additional_data') ?>
 
 </div>
+<div class="countdown" id="tvcountdown">
+    <div id="heading1">
+        Din ordre sendes i dag hvis du bestiller inden:
+    </div>
+    <div id="countbox_1" class="timer-view"></div>
+</div>
+<?php
+$ids = $_product->getCategoryId();
+$_category = Mage::getModel('catalog/category')->load($ids);
+?>
+<?php
+/*
+ * Count for timer calculation declared here 
+ * Neu lap theo moi ngay thi tach ngay countdown thay bang ngay hien thi de nguyen thoi gian
+ */
+
+$toDate = $_category->getCountDown();
+if (trim($toDate) != '') {
+    ?>
+    <script>
+        var timer = 1;
+        if (typeof (BackColor) == "undefined")
+            BackColor = "white";
+        if (typeof (ForeColor) == "undefined")
+            ForeColor = "black";
+        if (typeof (DisplayFormat) == "undefined") {
+            DisplayFormat = "<span class='tvday'>%%D%%</span><span class='txtday'>Day</span><span class='tvhour'>%%H%%</span><span class='txthour'>timer,</span><span class='tvmin'>%%M%%</span><span class='txtmin'>min &</span><span class='tvsec'>%%S%%</span><span class='txtsec'> sek</span>";
+            document.getElementById('tvcountdown').style.display = "block";
+        }
+        if (typeof (CountActive) == "undefined")
+            CountActive = true;
+        if (typeof (FinishMessage) == "undefined")
+            FinishMessage = "";
+        if (typeof (CountStepper) != "number")
+            CountStepper = -1;
+        if (typeof (LeadingZero) == "undefined")
+            LeadingZero = true;
+        CountStepper = Math.ceil(CountStepper);
+        if (CountStepper == 0)
+            CountActive = false;
+        var SetTimeOutPeriod = (Math.abs(CountStepper) - 1) * 1000 + 990;
+        function calcage(secs, num1, num2) {
+            s = ((Math.floor(secs / num1) % num2)).toString();
+            if (LeadingZero && s.length < 2)
+                s = "0" + s;
+            return "<b>" + s + "</b>";
+        }
+        function CountBack(secs, iid, timer) {
+            if (secs < 0) {
+                document.getElementById(iid).innerHTML = FinishMessage;
+                document.getElementById('tvcountdown').style.display = "none";
+                return;
+            }
+            DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs, 86400, 100000));
+            DisplayStr = DisplayStr.replace(/%%H%%/g, calcage(secs, 3600, 24));
+            DisplayStr = DisplayStr.replace(/%%M%%/g, calcage(secs, 60, 60));
+            DisplayStr = DisplayStr.replace(/%%S%%/g, calcage(secs, 1, 60));
+            document.getElementById(iid).innerHTML = DisplayStr;
+            if (CountActive)
+                setTimeout(function () {
+                    CountBack((secs + CountStepper), iid, timer)
+                }, SetTimeOutPeriod);
+        }
+    </script>
+    <?php
+    $date = new DateTime('now', new DateTimeZone('Asia/Ho_Chi_Minh'));
+    $isday = $date->format('l');
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $.ajax({
+                url: '<?php echo Mage::getBaseUrl() ?>time.php',
+                dataType: 'json',
+                success: function (data) {
+                    var dthen1 = new Date(data.timeend);
+                    start = data.start;
+                    start_date = Date.parse(start);
+                    var dnow1 = new Date(start_date);
+                    if (CountStepper > 0)
+                        ddiff = new Date((dnow1) - (dthen1));
+                    else
+                        ddiff = new Date((dthen1) - (dnow1));
+                    gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+                    var iid1 = "countbox_1";
+                    CountBack(gsecs1, "countbox_" + timer, timer);
+                    timer++;
+                    if (data.isday == 'Sunday' || data.isday == 'Saturday') {
+                        $('.countdown').hide()
+                    }
+                }
+            })
+
+        })
+    </script>
+
+    <style>
+        .countdown{
+            text-align: center;
+            display: none;
+        }
+        #heading1{
+            font-weight: bold;
+        }
+        .tvday,.tvhour, .tvmin, .tvsec{
+            color: #990000;
+            font-weight: bold;
+            font-size: 20px;
+            padding-left: 5px;
+        }
+        .txtday,.txthour, .txtmin, .txtsec{
+            font-size: 14px;
+            padding-left: 5px;
+        }
+        <?php
+        if ($isday == 'Sunday' || $isday == 'Saturday') {
+            ?>
+            .countdown{
+                display: none !important;
+            }
+            <?php
+        }
+        ?>
+    </style>
+    <?php
+}
+?>

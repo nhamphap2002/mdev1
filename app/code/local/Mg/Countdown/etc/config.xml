@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mg_Countdown>
+            <version>0.0.1</version>
+        </Mg_Countdown>
+    </modules>
+    <global>
+        <resources>
+            <countdown_setup>
+                <setup>
+                    <module>Mg_Countdown</module>
+                </setup>
+            </countdown_setup>
+        </resources>
+    </global>
+</config>
