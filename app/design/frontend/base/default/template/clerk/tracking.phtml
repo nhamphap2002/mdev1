@@ -1,0 +1,35 @@
+<?php
+/** @var Clerk_Clerk_Block_Tracking $this */
+
+$baseCurrencyCode = Mage::app()->getStore()->getBaseCurrencyCode();
+$currentCurrencyCode = Mage::app()->getStore()->getCurrentCurrencyCode();
+$currentCurrencySymbol = Mage::app()->getLocale()->currency($currentCurrencyCode)->getSymbol();
+$rates = Mage::getModel('directory/currency')->getCurrencyRates($baseCurrencyCode, $currentCurrencyCode);
+?>
+<script type="text/javascript">
+    window.clerkAsyncInit = function() {
+        Clerk.config({
+            key: '<?php echo $this->getPublicKey(); ?>',
+            collect_email: <?php echo $this->collectEmails() ? 'true' : 'false'; ?>,
+            templateFormatters: {
+                form_key: function () {
+                    return '<?php echo $this->getFormKey(); ?>';
+                },
+                <?php if ($rates && isset($rates[$currentCurrencySymbol])) : ?>
+                price_in_currency: function(price) {
+                    price =  Math.round(price * 100) / 100;
+                    var price_converted = Math.round((price * <?php echo (float)$rates[$currentCurrencyCode]; ?>) * 100) / 100;
+                    var retVal = <?php echo json_encode($currentCurrencySymbol); ?> + ' ' + price_converted.toFixed(2).toString();
+
+                    return retVal;
+                }
+                <?php endif; ?>
+            }
+        });
+    };
+    (function(){
+        var e = document.createElement('script'); e.type='text/javascript'; e.async = true;
+        e.src = document.location.protocol + '//api.clerk.io/static/clerk.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(e, s);
+    })();
+</script>
