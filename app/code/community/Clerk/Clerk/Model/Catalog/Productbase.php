@@ -1,39 +1,41 @@
 <?php
 
-class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
-{
+class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product {
+
     public $excludeReason = null;
 
     /* Returns the age of the product in days */
-    public function getAge()
-    {
+
+    public function getAge() {
         $createdTime = strtotime($this->getCreatedAt());
         $datediff = time() - $createdTime;
 
         return (int) floor($datediff / (60 * 60 * 24));
     }
 
-    public function load($id, $field = null)
-    {
+    public function load($id, $field = null) {
         $product = parent::load($id, $field);
         $this->setExcludeReason();
 
         return $product;
     }
 
-    public function setExcludeReason()
-    {
+    public function getUrlCart() {
+        $urlcart = Mage::helper('checkout/cart')->getAddUrl($this);
+        return $urlcart;
+    }
+
+    public function setExcludeReason() {
         // subclass this method
     }
 
-    public function isExcluded()
-    {
+    public function isExcluded() {
         return isset($this->excludeReason);
     }
 
     /* Return True if Specialprice is set and we are in the Specialprice period */
-    public function isSpecialPriceActive()
-    {
+
+    public function isSpecialPriceActive() {
         $currentDate = Mage::getModel('core/date')->timestamp(time());
         $currentDate = $currentDate - ($currentDate % 86400);
 
@@ -44,12 +46,12 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
         return isset($specialPrice) && (
                 (!$specialPriceFrom || strtotime($specialPriceFrom) <= $currentDate) &&
                 (!$specialPriceTo || strtotime($specialPriceTo) >= $currentDate)
-            );
+                );
     }
 
     /* Returns array representation of clerk product */
-    public function getInfo()
-    {
+
+    public function getInfo() {
         return array(
             'clerk_data' => $this->getClerkExportData(),
             'exclude' => $this->isExcluded(),
@@ -59,11 +61,11 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
     }
 
     /* Function for calculating prices based on Magento settings */
-    public function getClerkPrice($includeDiscounts = false, $includeTax = false)
-    {
+
+    public function getClerkPrice($includeDiscounts = false, $includeTax = false) {
         // Does prices entered in the backend include tax
         $pricesIncludeTax = Mage::getStoreConfig(
-            Mage_Tax_Model_Config::CONFIG_XML_PATH_PRICE_INCLUDES_TAX);
+                        Mage_Tax_Model_Config::CONFIG_XML_PATH_PRICE_INCLUDES_TAX);
 
         // Find a base price. We use getFinalPrice if we want to include
         // discounts.
@@ -92,14 +94,12 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
             case Mage_Catalog_Model_Product_Type::TYPE_BUNDLE:
 
                 // TODO: How does fixed priced bundels behave?
-
                 // NOTE: Category Rule prices have no effect on bundled
                 // products. Also note that bundles have no taxclass in
                 // Magento, so taxrate is taken from an item in the bundle.
-
                 // price is finalprice, discounts are included.
                 list($price, $_) = $this->getPriceModel()
-                    ->getTotalPrices($this, null, null, false);
+                        ->getTotalPrices($this, null, null, false);
 
                 // If discounts should not be included. Go ahead and find retail price.
                 // We should only run the snippet below when SpecialPrice is active
@@ -110,11 +110,11 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
 
                 // Set taxclass based on first product in bundle
                 $selectionCollection = $this->getTypeInstance(true)->getSelectionsCollection(
-                    $this->getTypeInstance(true)->getOptionsIds($this), $this);
+                        $this->getTypeInstance(true)->getOptionsIds($this), $this);
                 $idents = $selectionCollection->getAllIds();
                 if (count($idents) > 0) {
                     $taxClassId = Mage::getModel('clerk/product')
-                        ->load($idents[0])->getTaxClassId();
+                                    ->load($idents[0])->getTaxClassId();
                 }
                 break;
         }
@@ -142,56 +142,48 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
      * Determine if product is on sale
      * @return bool
      */
-    public function isOnSale()
-    {
+    public function isOnSale() {
         return !Mage::helper('clerk')->floatEq(
-            $this->getClerkRetailPrice(),
-            $this->getClerkFinalPrice()
+                        $this->getClerkRetailPrice(), $this->getClerkFinalPrice()
         );
     }
 
     /**
      * @return float
      */
-    public function getClerkFinalPrice()
-    {
+    public function getClerkFinalPrice() {
         return $this->getClerkPrice(true, false);
     }
 
     /**
      * @return float
      */
-    public function getClerkFinalPriceInclTax()
-    {
+    public function getClerkFinalPriceInclTax() {
         return $this->getClerkPrice(true, true);
     }
 
     /**
      * @return float
      */
-    public function getClerkRetailPrice()
-    {
+    public function getClerkRetailPrice() {
         return $this->getClerkPrice(false, false);
     }
 
     /**
      * @return float
      */
-    public function getClerkRetailPriceInclTax()
-    {
+    public function getClerkRetailPriceInclTax() {
         return $this->getClerkPrice(false, true);
     }
 
-    public function getClerkImageUrl()
-    {
+    public function getClerkImageUrl() {
         try {
             return (string) Mage::helper('catalog/image')
-                ->init($this, 'small_image')
-                ->resize($this->imageHeight, $this->imageWidth);
+                            ->init($this, 'small_image')
+                            ->resize($this->imageHeight, $this->imageWidth);
         } catch (Exception $e) {
             return (string) Mage::getDesign()
-                ->getSkinUrl('images/catalog/product/placeholder/image.jpg',
-                    array('_area' => 'frontend'));
+                            ->getSkinUrl('images/catalog/product/placeholder/image.jpg', array('_area' => 'frontend'));
         }
     }
 
@@ -200,8 +192,7 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
      *
      * @return mixed
      */
-    public function getManufacturer()
-    {
+    public function getManufacturer() {
         return Mage::helper('clerk')->getAttributeSafe($this, 'manufacturer');
     }
 
@@ -210,8 +201,7 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
      *
      * @return bool
      */
-    public function hasTierPrice()
-    {
+    public function hasTierPrice() {
         return count($this->getTierPrice()) > 0;
     }
 
@@ -220,12 +210,12 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product
      *
      * @return float|int
      */
-    public function getDiscountPercent()
-    {
+    public function getDiscountPercent() {
         if ($this->isOnSale()) {
             return round((($this->getClerkRetailPrice() - $this->getClerkFinalPrice()) / $this->getClerkRetailPrice()) * 100);
         } else {
             return 0;
         }
     }
+
 }
