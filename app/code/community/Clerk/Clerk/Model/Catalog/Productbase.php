@@ -21,7 +21,8 @@ class Clerk_Clerk_Model_Catalog_Productbase extends Mage_Catalog_Model_Product {
     }
 
     public function getUrlCart() {
-        $urlcart = Mage::helper('checkout/cart')->getAddUrl($this);
+        $urlcart = Mage::getUrl('ajax/index/add/product/' . $this->getId()); //
+        //Mage::helper('checkout/cart')->getAddUrl($this);
         return $urlcart;
     }
 

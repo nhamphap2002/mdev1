@@ -148,7 +148,9 @@
                     <?php if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                     <?php endif; ?>
+                    <a href="<?php echo Mage::getUrl('checkout/cart/add', array('product'=>$_product->getId(),'qty'=>1, 'form_key' => Mage::getSingleton('core/session')->getFormKey())) ?>">dsadsad</a>
                     <div class="actions">
+                        
                         <?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
                             <button type="button" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
                         <?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>

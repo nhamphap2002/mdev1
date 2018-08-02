@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_Ajax>
+            <version>0.1.0</version>
+        </Mgroup_Ajax>
+    </modules>
+    <frontend>
+        <routers>
+            <ajax>
+                <use>standard</use>
+                <args>
+                    <module>Mgroup_Ajax</module>
+                    <frontName>ajax</frontName>
+                </args>
+            </ajax>
+        </routers>
+    </frontend>
+    <global>
+        <helpers>
+            <ajax>
+                <class>Mgroup_Ajax_Helper</class>
+            </ajax>
+        </helpers>
+        <blocks>
+            <ajax>
+                <class>Mgroup_Ajax_Block</class>
+            </ajax>
+        </blocks>
+    </global>
+</config> 

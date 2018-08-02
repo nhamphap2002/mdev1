@@ -1,0 +1,12 @@
+<?xml version="1.0"?>   
+<layout version="0.1.0">   
+  <ajax_index_index>   
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>   
+    <reference name="content">   
+      <block type="ajax/index" name="ajax_index" template="ajax/index.phtml"/>   
+    </reference>   
+  </ajax_index_index>   
+</layout>   
+	
