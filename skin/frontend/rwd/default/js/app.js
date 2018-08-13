@@ -1276,3 +1276,433 @@ var ProductMediaManager = {
 $j(document).ready(function() {
     ProductMediaManager.init();
 });
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+
+(function ($) {
+
+    jQuery(function () {
+	setEventNav();
+  
+	jQuery('div.grdn-tvgghyd_nav ul.grdn-tvgghyd_nav_l1').nav();//call slider for left menu longcham
+
+	
+
+    });
+})(jQuery);
+
+var AVAILABLE_HEIGHT = 0;
+function setEventNav() {
+    jQuery('#navigation  li div.tvhild').hide();
+    jQuery('.listItem > li.selected div > ul').show();
+    jQuery('.listItem > li.selected > ul > li.selected > ul').show();
+    //jQuery('.listItem li.selected').removeClass('selected');
+
+    // Roll over / Roll out
+    jQuery('ul.listItem li a.navItem').bind('mouseenter', function () {
+	jQuery(this).addClass('hover');
+    })
+
+    jQuery('ul.listItem li a.navItem').bind('mouseleave', function () {
+	if (jQuery(this).hasClass('hover'))
+	    jQuery(this).removeClass('hover');
+    })
+
+    //display list collection
+    jQuery('ul.listItem li a.navItem').bind('click', function () {
+	var indexul = jQuery(this).parent().parent().parent().index();
+	var indexli = jQuery(this).parent().parent().index();
+	jQuery("ul.listItem:not(:eq(" + indexul + "))").hide();
+	jQuery("ul.listItem > li:not(:eq(" + indexli + "))").hide();
+
+	if (jQuery(this).hasClass('hover'))
+	    jQuery(this).removeClass('hover');
+	if (jQuery(this).parent().hasClass('selected')) {
+	    jQuery(this).parent().parent().removeClass('selected');
+	    jQuery(this).parent().next().hide();
+	} else {
+	    jQuery('.listItem li div.tvhild').hide();
+	    jQuery('.listItem li.selected').removeClass('selected');
+	    jQuery(this).parent().parent().addClass('selected');
+	    jQuery('.listItem li.selected div.item1').show();
+	    //on masque les ÃƒÂ©ventuels sous-menus par dÃƒÂ©faut
+	    jQuery('.listItem li.selected div.item2').hide();
+	}
+	var parentLi = jQuery(this).parent().parent();
+	var heigthDiv = jQuery(this).parent().parent().find('div.item1 > ul').height();
+
+	parentLi.attr('tvHeight', heigthDiv);
+	AVAILABLE_HEIGHT = jQuery(window).width() <= 768 ?
+		Math.max(jQuery('#jwrapper').height() - jQuery(this).offset().top - jQuery('.grdn-tvgghyd_footer').height(), jQuery(this).children().children().first().outerHeight(true) * 4) :
+		279 - $extraNav.height();
+
+	if (jQuery(this).height() > AVAILABLE_HEIGHT) {
+	    if (!Modernizr.touch)
+		$(this).css({overflow: 'visibility'});
+
+	    $up.parent().addClass('grdn-tvgghyd_slider_nav-item_disabled');
+	    $nav.show();
+	    return AVAILABLE_HEIGHT;
+	} else {
+	    jQuery(this).css({overflow: 'auto'});
+	    $nav.hide();
+	    return 'auto';
+	}
+	if (parseFloat(heigthDiv) > 280) {
+	    jQuery(".grdn-tvgghyd_slider_nav").show();
+	} else {
+	    parentLi.find('.tvhild').css({
+		height: heigthDiv + 'px'
+	    })
+	    jQuery(".grdn-tvgghyd_slider_nav").hide();
+	}
+    });
+
+    //next
+    jQuery(".grdn-tvgghyd_btn-reset").on('click', function () {
+    })
+    //manage sublevels that have other sublevels
+    jQuery('ul.listItem li ul li a').bind('click', function () {
+	if (jQuery(this).parent().parent("li").children("ul").length > 0) {
+	    if (jQuery(this).hasClass('hover'))
+		jQuery(this).removeClass('hover');
+	    if (jQuery(this).parent().parent().hasClass('selected')) {
+		jQuery(this).parent().parent().removeClass('selected');
+		jQuery(this).parent().next().hide();
+	    }
+	    else {
+		jQuery('.listItem li ul li ul').hide();
+		jQuery('.listItem li ul li.selected').removeClass('selected');
+		jQuery(this).parent().parent().addClass('selected');
+		jQuery('.listItem li ul li.selected ul').show();
+	    }
+	    //deactivate link
+	    return false;
+	}
+    });
+}
+
+
+
+/* Modernizr 2.6.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-touch-shiv-mq-cssclasses-teststyles-prefixes
+ */
+;
+window.Modernizr = function (a, b, c) {
+    function x(a) {
+	j.cssText = a
+    }
+    function y(a, b) {
+	return x(m.join(a + ";") + (b || ""))
+    }
+    function z(a, b) {
+	return typeof a === b
+    }
+    function A(a, b) {
+	return!!~("" + a).indexOf(b)
+    }
+    function B(a, b, d) {
+	for (var e in a) {
+	    var f = b[a[e]];
+	    if (f !== c)
+		return d === !1 ? a[e] : z(f, "function") ? f.bind(d || b) : f
+	}
+	return!1
+    }
+    var d = "2.6.3", e = {}, f = !0, g = b.documentElement, h = "modernizr", i = b.createElement(h), j = i.style, k, l = {}.toString, m = " -webkit- -moz- -o- -ms- ".split(" "), n = {}, o = {}, p = {}, q = [], r = q.slice, s, t = function (a, c, d, e) {
+	var f, i, j, k, l = b.createElement("div"), m = b.body, n = m || b.createElement("body");
+	if (parseInt(d, 10))
+	    while (d--)
+		j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), l.appendChild(j);
+	return f = ["&#173;", '<style id="s', h, '">', a, "</style>"].join(""), l.id = h, (m ? l : n).innerHTML += f, n.appendChild(l), m || (n.style.background = "", n.style.overflow = "hidden", k = g.style.overflow, g.style.overflow = "hidden", g.appendChild(n)), i = c(l, a), m ? l.parentNode.removeChild(l) : (n.parentNode.removeChild(n), g.style.overflow = k), !!i
+    }, u = function (b) {
+	var c = a.matchMedia || a.msMatchMedia;
+	if (c)
+	    return c(b).matches;
+	var d;
+	return t("@media " + b + " { #" + h + " { position: absolute; } }", function (b) {
+	    d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
+	}), d
+    }, v = {}.hasOwnProperty, w;
+    !z(v, "undefined") && !z(v.call, "undefined") ? w = function (a, b) {
+	return v.call(a, b)
+    } : w = function (a, b) {
+	return b in a && z(a.constructor.prototype[b], "undefined")
+    }, Function.prototype.bind || (Function.prototype.bind = function (b) {
+	var c = this;
+	if (typeof c != "function")
+	    throw new TypeError;
+	var d = r.call(arguments, 1), e = function () {
+	    if (this instanceof e) {
+		var a = function () {
+		};
+		a.prototype = c.prototype;
+		var f = new a, g = c.apply(f, d.concat(r.call(arguments)));
+		return Object(g) === g ? g : f
+	    }
+	    return c.apply(b, d.concat(r.call(arguments)))
+	};
+	return e
+    }), n.touch = function () {
+	var c;
+	return"ontouchstart"in a || a.DocumentTouch && b instanceof DocumentTouch ? c = !0 : t(["@media (", m.join("touch-enabled),("), h, ")", "{#modernizr{top:9px;position:absolute}}"].join(""), function (a) {
+	    c = a.offsetTop === 9
+	}), c
+    };
+    for (var C in n)
+	w(n, C) && (s = C.toLowerCase(), e[s] = n[C](), q.push((e[s] ? "" : "no-") + s));
+    return e.addTest = function (a, b) {
+	if (typeof a == "object")
+	    for (var d in a)
+		w(a, d) && e.addTest(d, a[d]);
+	else {
+	    a = a.toLowerCase();
+	    if (e[a] !== c)
+		return e;
+	    b = typeof b == "function" ? b() : b, typeof f != "undefined" && f && (g.className += " " + (b ? "" : "no-") + a), e[a] = b
+	}
+	return e
+    }, x(""), i = k = null, function (a, b) {
+	function k(a, b) {
+	    var c = a.createElement("p"), d = a.getElementsByTagName("head")[0] || a.documentElement;
+	    return c.innerHTML = "x<style>" + b + "</style>", d.insertBefore(c.lastChild, d.firstChild)
+	}
+	function l() {
+	    var a = r.elements;
+	    return typeof a == "string" ? a.split(" ") : a
+	}
+	function m(a) {
+	    var b = i[a[g]];
+	    return b || (b = {}, h++, a[g] = h, i[h] = b), b
+	}
+	function n(a, c, f) {
+	    c || (c = b);
+	    if (j)
+		return c.createElement(a);
+	    f || (f = m(c));
+	    var g;
+	    return f.cache[a] ? g = f.cache[a].cloneNode() : e.test(a) ? g = (f.cache[a] = f.createElem(a)).cloneNode() : g = f.createElem(a), g.canHaveChildren && !d.test(a) ? f.frag.appendChild(g) : g
+	}
+	function o(a, c) {
+	    a || (a = b);
+	    if (j)
+		return a.createDocumentFragment();
+	    c = c || m(a);
+	    var d = c.frag.cloneNode(), e = 0, f = l(), g = f.length;
+	    for (; e < g; e++)
+		d.createElement(f[e]);
+	    return d
+	}
+	function p(a, b) {
+	    b.cache || (b.cache = {}, b.createElem = a.createElement, b.createFrag = a.createDocumentFragment, b.frag = b.createFrag()), a.createElement = function (c) {
+		return r.shivMethods ? n(c, a, b) : b.createElem(c)
+	    }, a.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + l().join().replace(/\w+/g, function (a) {
+		return b.createElem(a), b.frag.createElement(a), 'c("' + a + '")'
+	    }) + ");return n}")(r, b.frag)
+	}
+	function q(a) {
+	    a || (a = b);
+	    var c = m(a);
+	    return r.shivCSS && !f && !c.hasCSS && (c.hasCSS = !!k(a, "article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}")), j || p(a, c), a
+	}
+	var c = a.html5 || {}, d = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i, e = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i, f, g = "_html5shiv", h = 0, i = {}, j;
+	(function () {
+	    try {
+		var a = b.createElement("a");
+		a.innerHTML = "<xyz></xyz>", f = "hidden"in a, j = a.childNodes.length == 1 || function () {
+		    b.createElement("a");
+		    var a = b.createDocumentFragment();
+		    return typeof a.cloneNode == "undefined" || typeof a.createDocumentFragment == "undefined" || typeof a.createElement == "undefined"
+		}()
+	    } catch (c) {
+		f = !0, j = !0
+	    }
+	})();
+	var r = {elements: c.elements || "abbr article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output progress section summary time video", shivCSS: c.shivCSS !== !1, supportsUnknownElements: j, shivMethods: c.shivMethods !== !1, type: "default", shivDocument: q, createElement: n, createDocumentFragment: o};
+	a.html5 = r, q(b)
+    }(this, b), e._version = d, e._prefixes = m, e.mq = u, e.testStyles = t, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " js " + q.join(" ") : ""), e
+}(this, this.document);
+
+
+(function (jQuery) {
+    jQuery.fn.nav = function () {
+	return this.each(function () {
+	    var $items = jQuery('a.haschild', this),
+		    $self = jQuery(this),
+		    $current,
+		    $nav = $self.next(),
+		    $up = $nav.find('>.grdn-tvgghyd_slider_nav-prev button'),
+		    $down = $nav.find('>.grdn-tvgghyd_slider_nav-next button'),
+		    $toggle = jQuery('p.grdn-tvgghyd_nav-toggle_container button'),
+		    $wrapper = jQuery('div.grdn-tvgghyd_nav_content'),
+		    $extraNav = $wrapper.next(),
+		    ACTIVE_LINK_CLASS = 'grdn-tvgghyd_nav_link-active',
+		    HIDE_CLASS = 'grdn-tvgghyd_js-hide',
+		    AVAILABLE_HEIGHT = 0,
+		    CLICK_EVENT = Modernizr.touch ? 'click.nav' : 'click.nav',
+		    $back = jQuery('.grdn-tvgghyd_btn-back_container').length ? jQuery('.grdn-tvgghyd_btn-back_container') : jQuery('<div class="grdn-tvgghyd_btn-back_container"><button class="grdn-tvgghyd_btn-reset grdn-tvgghyd_btn-back">Back</button></div>');
+
+
+	    $back
+		    .hide()
+		    .insertBefore($self);
+
+
+	    function checkPrevNext() {
+		var $list = $current.closest('li').children().last().children();
+
+		if (parseInt($list.css('top'), 10) == 0) {
+		    $up.parent().addClass('grdn-tvgghyd_slider_nav-item_disabled');
+		} else {
+		    $up.parent().removeClass('grdn-tvgghyd_slider_nav-item_disabled');
+		}
+
+		if (parseInt($list.css('top'), 10) == $list.parent().height() - $list.height()) {
+		    $down.parent().addClass('grdn-tvgghyd_slider_nav-item_disabled');
+		} else {
+		    $down.parent().removeClass('grdn-tvgghyd_slider_nav-item_disabled');
+		}
+	    }
+
+	    $toggle.on(CLICK_EVENT, function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		var $self = $(this),
+			placeholder = $self.data('hide-wording');
+
+		$self
+			.data('hide-wording', $self.text())
+			.text(placeholder);
+
+		if (jQuery('.grdn-tvgghyd_home_page').length) {
+		    $extraNav.toggle();
+		}
+
+		$wrapper.toggle();
+		$toggle.toggleClass('grdn-tvgghyd_is-active');
+	    });
+//var n = 0;
+	    $up.on(CLICK_EVENT, function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var $wrapper = $current.closest('li').children().last(),
+			$list = $wrapper.children();
+//alert('up'+Math.min(0, $list.position().top + AVAILABLE_HEIGHT));
+		$list.animate({
+		    top: Math.min(0, $list.position().top + AVAILABLE_HEIGHT)
+		}, 500, checkPrevNext);
+	    });
+
+	    $down.on(CLICK_EVENT, function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		var $wrapper = $current.closest('li').children().last(),
+			$list = $wrapper.children();
+		//$list.stop(true, true).animate({
+
+		//   ++n;
+		$list.stop(true, true).animate({
+		    top: Math.max(AVAILABLE_HEIGHT - $list.height(), $list.position().top - AVAILABLE_HEIGHT)
+			    //   top: Math.max(AVAILABLE_HEIGHT - $list.height(), (0 - AVAILABLE_HEIGHT)*n)
+		}, 500, checkPrevNext);
+//                 if(Math.max(AVAILABLE_HEIGHT - $list.height(),(0 - AVAILABLE_HEIGHT)*n)==(AVAILABLE_HEIGHT - $list.height())){
+//                     n=0;
+//                 }
+
+	    });
+
+	    $back.on(CLICK_EVENT, function (e) {
+		e.preventDefault;
+		e.stopPropagation();
+		var $active = $items.filter('.' + ACTIVE_LINK_CLASS);
+
+		if ($current)
+		    $current.closest('li').children().last().css(!Modernizr.touch ? {overflow: 'inherit'} : {}).height('auto');
+
+		$nav.hide();
+		if ($active.length > 1) {
+		    $active
+			    .first()
+			    .trigger(CLICK_EVENT);
+		} else {
+		    $back.hide();
+		    $items.removeClass(ACTIVE_LINK_CLASS);
+		    $self
+			    .find('li, div')
+			    .addClass(HIDE_CLASS);
+		    $self
+			    .find('>li, >li>div')
+			    .removeClass(HIDE_CLASS)
+			    .show();
+		}
+	    });
+
+	    $items.on(CLICK_EVENT, function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		var $this = jQuery(this);
+
+		$this.blur();
+
+		$back.show();
+
+		$items.removeClass(ACTIVE_LINK_CLASS);
+
+		if ($current)
+		    $current.closest('li').children().last().css(!Modernizr.touch ? {overflow: 'inherit'} : {}).height('auto');
+
+		$self
+			.find('li, div')
+			.addClass(HIDE_CLASS);
+
+		$this
+			.addClass(ACTIVE_LINK_CLASS)
+			.parents('li')
+			.removeClass(HIDE_CLASS)
+			.show()
+			.find('>div')
+			.removeClass(HIDE_CLASS)
+			.find('>a')
+			.addClass(ACTIVE_LINK_CLASS)
+			.end()
+			.end()
+			.end()
+			.closest('li')
+			.find('>div, >div>ul>li, >div>ul>li>div')
+			.removeClass(HIDE_CLASS)
+			.show()
+			.end()
+			.children()
+			.last()
+			.height(function (e) {
+
+			    AVAILABLE_HEIGHT = jQuery(window).width() <= 768 ?
+				    Math.max(jQuery('.wrapper').height() - jQuery(this).offset().top - jQuery('.footer-container').height(), jQuery(this).children().children().first().outerHeight(true) * 4) :
+				    279 - $extraNav.height();
+//alert(jQuery(this).height());
+			    if (jQuery(this).height() >= AVAILABLE_HEIGHT) {
+				if (!Modernizr.touch)
+				    jQuery(this).css({overflow: 'hidden'});
+
+				$up.parent().addClass('grdn-tvgghyd_slider_nav-item_disabled');
+				$nav.show();
+				return AVAILABLE_HEIGHT;
+			    } else {
+				jQuery(this).css({overflow: 'auto'});
+				$nav.hide();
+				return 'auto';
+			    }
+			});
+
+		$current = $this;
+	    });
+	});
+    }
+})(jQuery);

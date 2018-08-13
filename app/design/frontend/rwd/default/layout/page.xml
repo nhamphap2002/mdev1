@@ -98,6 +98,12 @@
                         <block type="page/html_topmenu_renderer" name="catalog.topnav.renderer" template="page/html/topmenu/renderer.phtml"/>
                     </block>
                 </block>
+                <block type="core/text_list" name="tvtop.menu" as="TVtopMenu" translate="label">
+                    <label>Navigation Bar</label>
+                    <block type="page/html_topmenu" name="tvcatalog.topnav" template="page/html/tvtopmenu.phtml">
+                        <block type="page/html_topmenu_renderer" name="catalog.topnav.renderer" template="page/html/topmenu/tvrenderer.phtml"/>
+                    </block>
+                </block>
                 <block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
                     <label>Page Header</label>
                     <action method="setElementClass"><value>top-container</value></action>

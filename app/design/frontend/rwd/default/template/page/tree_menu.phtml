@@ -1,0 +1,42 @@
+<?php
+
+$rootCatId = Mage::app()->getStore()->getRootCategoryId();
+
+function getTreeCategories($parentId, $isChild) {
+    $allCats = Mage::getModel('catalog/category')->getCollection()
+            ->addAttributeToSelect('*')
+            ->addAttributeToFilter('is_active', '1')
+            //->addAttributeToFilter('include_in_menu','1')
+            ->addAttributeToSort('position', 'ASC')
+            ->addAttributeToFilter('parent_id', array('eq' => $parentId));
+
+    $child_text = ($isChild) ? "-" : "";
+    foreach ($allCats as $category) {
+        $subcats = $category->getChildren();
+        if ($subcats) {
+            $classChildren = 'navItem haschild';
+        } else {
+            $classChildren = '';
+        }
+        $cat = Mage::getModel('catalog/category')->load($category->getId());
+        $html .= '<li class="grdn-longchamp_nav_' . $category->getId() . '_item">';
+        $html .= '<div class="tvaprent grdn-longchamp_nav_' . $category->getId() . '_in-1">';
+        $html .= '<a class="' . $classChildren . '" href="' . Mage::getUrl($cat->getUrlPath()) . '">';
+        $html .= $category->getName() . "</a>";
+        $html .= "</div>";
+        if ($subcats != '') {
+            $html .= '<div class="tvhild item1 grdn-longchamp_nav_' . $category->getId() . '">';
+            $html .= '<ul rel="">';
+            $html .= getTreeCategories($category->getId(), true);
+            $html .= '</ul>';
+            $html .= '</div>';
+        }
+        $html .= '</li>';
+    }
+    return $html;
+}
+
+$catlistHtml = getTreeCategories($rootCatId, false);
+
+echo $catlistHtml;
+?>

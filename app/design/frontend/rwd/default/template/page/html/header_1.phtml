@@ -108,34 +108,51 @@
 //echo Mage::getStoreConfig('mgroup_gcrawler/general/enable_wishlist',Mage::app()->getStore());
 //print_r($this->getRequest());exit();
 ?>
-<div id="tvgghydNavL">
+<div id="longChampNavL">
     <div class="inner" style="min-height: 291px;">
         <div id="navigation" class="no-touch">
 
-            <div class="grdn-tvgghyd_col-xs grdn-tvgghyd_nav">
-                <div id="grdn-tvgghyd_nav_content" class="grdn-tvgghyd_nav_content">
-                    <div class="grdn-tvgghyd_nav_slider">
+            <div class="grdn-longchamp_col-xs grdn-longchamp_nav">
+                <div id="grdn-longchamp_nav_content" class="grdn-longchamp_nav_content">
+                    <div class="grdn-longchamp_nav_slider">
 
-                        <div class="grdn-tvgghyd_btn-back_container" style="display: none;">
-                            <button class="grdn-tvgghyd_btn-reset grdn-tvgghyd_btn-back"><span _ngcontent-c7="" class="button-icon sf-icon-arrow-l"></span>Back</button>
+                        <div class="grdn-longchamp_btn-back_container" style="display: none;">
+                            <button class="grdn-longchamp_btn-reset grdn-longchamp_btn-back">Back</button>
                         </div>
-                        <ul class="grdn-tvgghyd_nav_l1">
-                            <li>
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1">
-                                    <span class="button-icon sf-icon-house"></span>
-                                    <a href="<?php echo Mage::getBaseUrl() ?>">Home</a>
-                                </div>
-                            </li>
-                            <li class="grdn-tvgghyd_nav_4_item">
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1"><span class="button-icon sf-icon-bag"></span><a class="navItem haschild" href="#">Shop Departments</a></div>
-                                <div class="tvhild item1 grdn-tvgghyd_nav_4">
-                                    <?php echo $this->getChildHtml('TVtopMenu') ?>
-                                </div>
-                            </li>
-                            <?php
-                            echo $this->getLayout()->createBlock('cms/block')->setBlockId('menu_mobile')->toHtml();
-                            ?>
-                        </ul>
+
+                        <?php
+                        $rootcatId = Mage::app()->getStore()->getRootCategoryId();
+                        $categories = Mage::getModel('catalog/category')->getCategories($rootcatId);
+
+                        function get_categories($categories, $i = 1) {
+                            if ($i == 1) {
+                                $array = '<ul class="grdn-longchamp_nav_l1">';
+                            }
+                            foreach ($categories as $category) {
+                                $cat = Mage::getModel('catalog/category')->load($category->getId());
+                                $array .= '<li class="grdn-longchamp_nav_' . $category->getId() . '_item">' .
+                                        '<div class="fgcparent grdn-longchamp_nav_' . $category->getId() . '_in-' . $i . '">' .
+                                        '<a class="navItem haschild" href="' . Mage::getUrl($cat->getUrlPath()) . '">' .
+                                        $category->getName() . "</a>"
+                                        . "</div>";
+                                if ($category->hasChildren()) {
+                                    $children = Mage::getModel('catalog/category')->getCategories($category->getId());
+                                    $array .= '<div class="fgchild item1 grdn-longchamp_nav_' . $category->getId() . '">';
+                                    $array .= '<ul rel="' . $i . '">';
+                                    $array .= get_categories($children, $i + 1);
+                                    $array .= '</ul>';
+                                    $array .= '</div>';
+                                }
+                                $array .= '</li>';
+                            }
+                            if ($i == 1) {
+                                $array .= '</ul>';
+                            }
+                            return $array;
+                        }
+
+                        echo get_categories($categories);
+                        ?>
                     </div>
                 </div>
             </div>

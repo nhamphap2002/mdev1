@@ -108,28 +108,62 @@
 //echo Mage::getStoreConfig('mgroup_gcrawler/general/enable_wishlist',Mage::app()->getStore());
 //print_r($this->getRequest());exit();
 ?>
-<div id="tvgghydNavL">
+<div id="longChampNavL">
     <div class="inner" style="min-height: 291px;">
         <div id="navigation" class="no-touch">
 
-            <div class="grdn-tvgghyd_col-xs grdn-tvgghyd_nav">
-                <div id="grdn-tvgghyd_nav_content" class="grdn-tvgghyd_nav_content">
-                    <div class="grdn-tvgghyd_nav_slider">
+            <div class="grdn-longchamp_col-xs grdn-longchamp_nav">
+                <div id="grdn-longchamp_nav_content" class="grdn-longchamp_nav_content">
+                    <div class="grdn-longchamp_nav_slider">
 
-                        <div class="grdn-tvgghyd_btn-back_container" style="display: none;">
-                            <button class="grdn-tvgghyd_btn-reset grdn-tvgghyd_btn-back"><span _ngcontent-c7="" class="button-icon sf-icon-arrow-l"></span>Back</button>
+                        <div class="grdn-longchamp_btn-back_container" style="display: none;">
+                            <button class="grdn-longchamp_btn-reset grdn-longchamp_btn-back">Back</button>
                         </div>
-                        <ul class="grdn-tvgghyd_nav_l1">
+                        <ul class="grdn-longchamp_nav_l1">
                             <li>
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1">
+                                <div class="tvaprent grdn-longchamp_nav_4_in-1">
                                     <span class="button-icon sf-icon-house"></span>
                                     <a href="<?php echo Mage::getBaseUrl() ?>">Home</a>
                                 </div>
                             </li>
-                            <li class="grdn-tvgghyd_nav_4_item">
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1"><span class="button-icon sf-icon-bag"></span><a class="navItem haschild" href="#">Shop Departments</a></div>
-                                <div class="tvhild item1 grdn-tvgghyd_nav_4">
-                                    <?php echo $this->getChildHtml('TVtopMenu') ?>
+                            <li class="grdn-longchamp_nav_4_item">
+                                <div class="tvaprent grdn-longchamp_nav_4_in-1"><span class="button-icon sf-icon-bag"></span><a class="navItem haschild" href="#">Shop Departments</a></div>
+                                <div class="tvhild item1 grdn-longchamp_nav_4">
+                                    <ul class="">
+                                        <?php
+                                        $rootcatId = Mage::app()->getStore()->getRootCategoryId();
+                                        $categories = Mage::getModel('catalog/category')->getCategories($rootcatId);
+
+                                        function get_categories($categories) {
+                                            $classChildren = '';
+                                            foreach ($categories as $category) {
+                                                if ($category->hasChildren()) {
+                                                    $classChildren = 'navItem haschild';
+                                                } else {
+                                                    $classChildren = '';
+                                                }
+                                                //$cat = Mage::getModel('catalog/category')->load($category->getId());
+                                                $array .= '<li class="grdn-longchamp_nav_' . $category->getId() . '_item">';
+                                                $array .= '<div class="tvaprent grdn-longchamp_nav_' . $category->getId() . '_in-1">';
+                                                $array .= '<a class="' . $classChildren . '" href="' . Mage::getUrl($category->getUrlPath()) . '">';
+                                                $array .= $category->getName() . "</a>";
+                                                $array .= "</div>";
+                                                if ($category->hasChildren()) {
+                                                    $children = Mage::getModel('catalog/category')->getCategories($category->getId());
+                                                    $array .= '<div class="tvhild item1 grdn-longchamp_nav_' . $category->getId() . '">';
+                                                    $array .= '<ul rel="">';
+                                                    $array .= get_categories($children);
+                                                    $array .= '</ul>';
+                                                    $array .= '</div>';
+                                                }
+                                                $array .= '</li>';
+                                            }
+                                            return $array;
+                                        }
+
+                                        echo get_categories($categories);
+                                        ?>
+                                    </ul>
                                 </div>
                             </li>
                             <?php
