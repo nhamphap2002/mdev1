@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    var widgetId2;
+
+    var onloadCallback = function () {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        widgetId2 = grecaptcha.render('tvrecaptcha2', {
+            'sitekey': $site_key,
+            'theme': 'light'
+        });
+    };
+    jQuery(document).ready(function ($) {
+        $(document).on('click', 'a.popupcaptcha2', function (e) {
+            e.preventDefault();
+            $.fancybox.close();
+            strwidgetId2 = grecaptcha.getResponse(widgetId2);
+            if (grecaptcha.getResponse(widgetId2) != '' || strwidgetId2) {
+                $('#newsletter_footer').show().click();
+                $('.fancybox2.button').hide();
+            }
+        })
+        $(document).on('click', '.fancybox-overlay', function (e) {
+          alert()  
+        })
+    })
+
+</script> 
+<div id="tvrecaptcha_2">
+    <div id="tvrecaptcha2"></div>	
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+            async defer>
+    </script>  
+</div>

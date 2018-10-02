@@ -37,7 +37,7 @@
                 </tv_subscriber>
             </updates>
         </layout>-->
-        <events>
+<!--        <events>
             <newsletter_subscriber_save_before>
                 <observers>
                     <tv_subscriber_save_additional>
@@ -46,7 +46,7 @@
                     </tv_subscriber_save_additional>
                 </observers>
             </newsletter_subscriber_save_before>
-        </events>
+        </events>-->
     </frontend>
     <adminhtml>
         <events>

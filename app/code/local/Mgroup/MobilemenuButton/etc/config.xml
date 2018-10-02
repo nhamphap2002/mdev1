@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_MobilemenuButton>
+            <version>1.0.0</version>
+        </Mgroup_MobilemenuButton>
+    </modules>
+    <global>
+        <helpers>
+            <mobilemenu_button>
+                <class>Mgroup_MobilemenuButton_Helper</class>
+            </mobilemenu_button>
+        </helpers>
+    </global>
+</config>

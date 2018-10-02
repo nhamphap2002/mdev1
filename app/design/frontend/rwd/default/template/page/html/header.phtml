@@ -107,38 +107,88 @@
 //echo Mage::getStoreConfig('crawler/general/enable',Mage::app()->getStore());
 //echo Mage::getStoreConfig('mgroup_gcrawler/general/enable_wishlist',Mage::app()->getStore());
 //print_r($this->getRequest());exit();
-?>
-<div id="tvgghydNavL">
-    <div class="inner" style="min-height: 291px;">
-        <div id="navigation" class="no-touch">
 
-            <div class="grdn-tvgghyd_col-xs grdn-tvgghyd_nav">
-                <div id="grdn-tvgghyd_nav_content" class="grdn-tvgghyd_nav_content">
-                    <div class="grdn-tvgghyd_nav_slider">
+if (Mage::getStoreConfig('mobilemenu_button/general/enabled', Mage::app()->getStore())) {
+    ?>
+    <div class="header-button menu" data-flag="menu">
+        <div class="font-shc-enterprise-icons" data-title="Menu" id="menuIcon">2</div>
+    </div>
+    <div id="tvgghydNavL">
+        <div class="inner" style="min-height: 291px;">
+            <div id="navigation" class="no-touch">
 
-                        <div class="grdn-tvgghyd_btn-back_container" style="display: none;">
-                            <button class="grdn-tvgghyd_btn-reset grdn-tvgghyd_btn-back"><span _ngcontent-c7="" class="button-icon sf-icon-arrow-l"></span>Back</button>
+                <div class="grdn-tvgghyd_col-xs grdn-tvgghyd_nav">
+                    <div id="grdn-tvgghyd_nav_content" class="grdn-tvgghyd_nav_content">
+                        <div class="grdn-tvgghyd_nav_slider">
+
+                            <div class="grdn-tvgghyd_btn-back_container" style="display: none;">
+                                <button class="grdn-tvgghyd_btn-reset grdn-tvgghyd_btn-back"><span _ngcontent-c7="" class="button-icon sf-icon-arrow-l"></span><span _ngcontent-c7="" class="button-text">Back</span></button>
+                            </div>
+                            <ul class="grdn-tvgghyd_nav_l1">
+                                <li>
+                                    <div class="tvaprent grdn-tvgghyd_nav_4_in-1">
+                                        <span class="button-icon sf-icon-house"></span>
+                                        <a href="<?php echo Mage::getBaseUrl() ?>">Home</a>
+                                    </div>
+                                </li>
+                                <li class="grdn-tvgghyd_nav_4_item">
+                                    <div class="tvaprent grdn-tvgghyd_nav_4_in-1"><span class="button-icon sf-icon-bag"></span><a class="navItem haschild" href="#">Shop Departments</a></div>
+                                    <div class="tvhild item1 grdn-tvgghyd_nav_4">
+                                        <ul>
+                                            <?php
+                                            echo $this->getLayout()
+                                                    ->createBlock('core/template')
+                                                    ->setTemplate('page/tree_menu.phtml')
+                                                    ->toHtml();
+                                            ?>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <?php
+                                echo $this->getLayout()->createBlock('cms/block')->setBlockId('menu_mobile')->toHtml();
+                                ?>
+                            </ul>
                         </div>
-                        <ul class="grdn-tvgghyd_nav_l1">
-                            <li>
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1">
-                                    <span class="button-icon sf-icon-house"></span>
-                                    <a href="<?php echo Mage::getBaseUrl() ?>">Home</a>
-                                </div>
-                            </li>
-                            <li class="grdn-tvgghyd_nav_4_item">
-                                <div class="tvaprent grdn-tvgghyd_nav_4_in-1"><span class="button-icon sf-icon-bag"></span><a class="navItem haschild" href="#">Shop Departments</a></div>
-                                <div class="tvhild item1 grdn-tvgghyd_nav_4">
-                                    <?php echo $this->getChildHtml('TVtopMenu') ?>
-                                </div>
-                            </li>
-                            <?php
-                            echo $this->getLayout()->createBlock('cms/block')->setBlockId('menu_mobile')->toHtml();
-                            ?>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <?php
+    $icon_color = Mage::getStoreConfig('mobilemenu_button/general/icon_color', Mage::app()->getStore());
+    $text_color = Mage::getStoreConfig('mobilemenu_button/general/text_color', Mage::app()->getStore());
+    $bg_color = Mage::getStoreConfig('mobilemenu_button/general/background_color', Mage::app()->getStore());
+    ?>
+    <style>
+    <?php
+    if ($icon_color != '') {
+        ?>
+            span.navright > span {
+                background: #<?php echo $icon_color; ?>;
+            }
+        <?php
+    }
+    ?>
+    <?php
+    if ($text_color != '') {
+        ?>
+            #tvgghydNavL a {
+                color: #<?php echo $text_color; ?>;
+            }
+        <?php
+    }
+    ?>
+    <?php
+    if ($bg_color != '') {
+        ?>
+            #tvgghydNavL,
+            #tvgghydNavL .grdn-tvgghyd_nav a{
+                background: #<?php echo $bg_color; ?>;
+            }
+        <?php
+    }
+    ?>
+    </style>
+    <?php
+}
+?>

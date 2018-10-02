@@ -13,16 +13,24 @@ function getTreeCategories($parentId, $isChild) {
     $child_text = ($isChild) ? "-" : "";
     foreach ($allCats as $category) {
         $subcats = $category->getChildren();
+        $cat = Mage::getModel('catalog/category')->load($category->getId());
+        $icon = '';
         if ($subcats) {
             $classChildren = 'navItem haschild';
+            $icon .= '<a class="goto" href="' . Mage::getUrl($cat->getUrlPath()) . '">';
+            $icon .= '<span _ngcontent-c7="" class="button-icon sf-icon-arrow-r"></span>';
+            $icon .= '</a>';
         } else {
             $classChildren = '';
+            $icon = '';
         }
-        $cat = Mage::getModel('catalog/category')->load($category->getId());
+
+
         $html .= '<li class="grdn-longchamp_nav_' . $category->getId() . '_item">';
         $html .= '<div class="tvaprent grdn-longchamp_nav_' . $category->getId() . '_in-1">';
         $html .= '<a class="' . $classChildren . '" href="' . Mage::getUrl($cat->getUrlPath()) . '">';
         $html .= $category->getName() . "</a>";
+        $html .= $icon;
         $html .= "</div>";
         if ($subcats != '') {
             $html .= '<div class="tvhild item1 grdn-longchamp_nav_' . $category->getId() . '">';
