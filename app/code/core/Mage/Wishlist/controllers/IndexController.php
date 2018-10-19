@@ -518,7 +518,7 @@ class Mage_Wishlist_IndexController extends Mage_Wishlist_Controller_Abstract
             );
 
             $item->mergeBuyRequest($buyRequest);
-            if ($item->addToCart($cart, true)) {
+            if ($item->addToCart($cart, false)) {
                 $cart->save()->getQuote()->collectTotals();
             }
 
