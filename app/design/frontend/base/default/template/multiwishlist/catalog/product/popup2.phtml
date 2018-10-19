@@ -1,0 +1,80 @@
+<?php
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+?>
+
+<?php  $labels = $this->getMyWishlist(); ?>
+
+<div id="output_div" class="output_div" style="padding-left: 14px; padding-top: 14px; width: 91%;"><div id="outputerror_div"></div>
+<form method="post">
+	<?php echo $this->getBlockHtml('formkey')?>
+<input type="hidden" value="<?php echo $this->getRequest()->getParam('buyreq'); ?>" id="buyReq" name="buyReq"/>
+<input type="hidden" value="<?php echo $this->getRequest()->getParam('product_id'); ?>" id="productId" name="productId"/>
+ <div style="font-weight:bold;">Please select a wishlist you wish to add the selected product to:</div>
+ <ul class="tabs" >
+            <li><label><input type="radio" name="wishlist_id" id="wishlist_id" value="0" checked/> Main</label></li>
+             <?php foreach($labels as $label): ?>
+
+            <li><label><input type="radio" name="wishlist_id" id="wishlist_id" value="<?php echo $label->getId()?>" /><?php echo $label->getWishlistName()?></label></li>
+            <?php endforeach;?>
+           <li><label><input type="radio" name="wishlist_id" id="wishlist_id" value="new" />OR Create A New Wishlist</label> 
+           <input id="wlname" class="input-text" type="text"  placeholder='Enter a new wishlist name here'  name="wlname"  /></li> 
+            <div id="wladvice" class="validation-advice" style="display:none">This is a required field.</div>
+        </ul> <div id="loadingmask" style="display: none;">
+            <img id="loading" src="<?php echo $this->getSkinUrl('multiwishlist/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading...') ?>"/> 
+		</div>
+        <br/>
+       <div class="wishlist_btns"> <button class="button"  title="Select" id="wishlist_select"  onclick="return validate()" type="button" ><span><span>Select</span></span></button>
+        <button class="button" id="cancel" title="Cancel"  type="button" ><span><span>Cancel</span></span></button></div>
+       
+</form>
+</div>
+<script type="text/javascript">
+
+function validate(){
+	
+	var isChecked = jQuery('#wishlist_id:checked').val()	;
+	
+	if(isChecked == 'new'){
+		if(jQuery('#wlname').val()==""){
+			jQuery("#wladvice").css("display", "block");
+			return false;
+		}	
+	}
+	doAjax();
+	return true;
+	}
+	jQuery('#cancel').click( function(){
+		parent.jQuery.fancybox.close();
+	});
+	
+	
+	function doAjax(){
+
+	var reloadurl = '<?php echo $this->getUrl('multiwishlist/index/assignWlFromView') ?>';
+	Element.show('loadingmask');
+	new Ajax.Request(reloadurl, {
+	method: 'post', 
+	parameters: {buyReq:jQuery('#buyReq').val(), productId: jQuery('#productId').val(),wishlist_id:jQuery('#wishlist_id:checked').val(),wlname:jQuery('#wlname').val() },
+	onComplete:function(transport) {
+		var content = JSON.parse(transport.responseText); 
+		  Element.hide('loadingmask');
+		  if((content.result)=='error')
+		   {
+			 $('outputerror_div').innerHTML = content.message;  
+		   }else{
+			 $('output_div').innerHTML = content.message;
+			 setTimeout( function() {parent.jQuery.fancybox.close(); },2000);
+			 
+		   }
+	  }
+	
+	
+	});
+	
+	}
+</script>

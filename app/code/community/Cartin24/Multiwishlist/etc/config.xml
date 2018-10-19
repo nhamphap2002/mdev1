@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>  
+    <modules>
+        <Cartin24_Multiwishlist>
+            <version>1.0.0</version>
+        </Cartin24_Multiwishlist>
+    </modules>
+    <frontend>
+        <routers>
+            <multiwishlist>
+                <use>standard</use>
+                <args>
+                    <module>Cartin24_Multiwishlist</module>
+                    <frontName>multiwishlist</frontName>
+                </args>
+            </multiwishlist>
+            <wishlist>
+                <args>
+                    <modules>
+                        <cartin24_multiwishlist before="Mage_Wishlist">Cartin24_Multiwishlist</cartin24_multiwishlist>
+                    </modules>
+                </args>
+            </wishlist>
+        </routers>
+        <layout>
+            <updates>
+                <multiwishlist>
+                    <file>multiwishlist.xml</file>
+                </multiwishlist>
+            </updates>
+        </layout>
+    </frontend>
+    <global>   
+        <helpers>
+            <multiwishlist>
+                <class>Cartin24_Multiwishlist_Helper</class>
+            </multiwishlist>
+        </helpers>
+        <models>
+            <multiwishlist>
+                <class>Cartin24_Multiwishlist_Model</class>
+                <resourceModel>multiwishlist_mysql4</resourceModel>
+
+            </multiwishlist>
+            <multiwishlist_mysql4>
+                <class>Cartin24_Multiwishlist_Model_Mysql4</class>
+                <entities>
+                    <wishlistlabels>
+                        <table>cartin24_multiwishlist</table>
+                    </wishlistlabels>
+                </entities>
+            </multiwishlist_mysql4>                         
+        </models>
+        <blocks>
+            <multiwishlist>
+                <class>Cartin24_Multiwishlist_Block</class>
+            </multiwishlist>
+            <wishlist>
+                <rewrite>        
+                    <share_email_items>Cartin24_Multiwishlist_Block_Share_Email_Items</share_email_items>
+                    <share_wishlist>Cartin24_Multiwishlist_Block_Share_Wishlist</share_wishlist>
+                </rewrite>
+            </wishlist>
+        </blocks>
+        <resources>
+            <multiwishlist_setup>
+                <setup>
+                    <module>Cartin24_Multiwishlist</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </multiwishlist_setup>
+            <multiwishlist_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </multiwishlist_write>
+            <multiwishlist_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </multiwishlist_read>
+        </resources>
+    </global>	
+</config>

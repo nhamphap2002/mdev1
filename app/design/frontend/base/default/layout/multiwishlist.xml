@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0"> 
+	<wishlist_index_index> 
+		<reference name="head">
+			<action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/tabcontent.js</script></action>
+			 <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+			<action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		 	<action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>
+		</reference>
+		<reference name="customer.wishlist">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/view.phtml</template></action>
+		    <block type="wishlist/customer_wishlist" name="createwishlist" template="multiwishlist/item/create.phtml" />           
+		</reference>
+		<reference name="customer.wishlist.items">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/item/list.phtml</template></action>
+		</reference>
+		<reference name="customer.wishlist.item.image">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/item/column/image.phtml</template></action>
+		</reference>
+		<reference name="customer.wishlist.item.info">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/item/column/info.phtml</template></action>
+		</reference>
+		<reference name="customer.wishlist.item.cart">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/item/column/cart.phtml</template></action>
+		</reference>
+        <reference name="right">
+            <action method="unsetChild"><name>wishlist_customer_sidebar</name></action>
+        </reference> <remove name="catalog.compare.sidebar" />
+	</wishlist_index_index>
+	<catalog_category_default translate="label">
+		  <reference name="head">
+		<action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action> 
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+
+		  </reference>	
+		  <reference name="product_list">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/list.phtml</template></action>     
+		  </reference>
+	</catalog_category_default>
+ 
+	<catalog_category_layered translate="label">	
+		<reference name="head">
+		  <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+		</reference>	
+		<reference name="product_list">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/list.phtml</template></action>
+		</reference>
+	</catalog_category_layered> 
+ 
+	<multiwishlist_index_options>
+	    <reference name="head">
+			 <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+			 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		 
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>	           
+            <block type="multiwishlist/multiwishlist" name="popup"  output="toHtml" template="multiwishlist/catalog/product/popup.phtml" />                        
+        </reference>     
+	</multiwishlist_index_options>
+	<multiwishlist_index_productoptions>
+	    <reference name="head">
+			 <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+			 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		 
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>	           
+            <block type="multiwishlist/multiwishlist" name="popup"  output="toHtml" template="multiwishlist/catalog/product/popup2.phtml" />                        
+        </reference>     
+	</multiwishlist_index_productoptions>
+	<catalog_product_view translate="label">	
+      <reference name="head">
+		  <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action> 
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+
+       </reference>	
+       <reference name="product.info.addto">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/view/addto.phtml</template></action>
+       </reference>
+       <reference name="catalog.product.related">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/list/related.phtml</template></action>
+       </reference>
+	</catalog_product_view> 
+	<checkout_cart_index translate="label">
+		<reference name="head">
+		 <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action> 
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+		</reference>	
+		<reference name="checkout.cart">		
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/checkout/cart.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"> <type>simple</type><block>checkout/cart_item_renderer</block><template>multiwishlist/checkout/cart/item/default.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>multiwishlist/checkout/cart/item/default.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>multiwishlist/checkout/cart/item/default.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"><type>downloadable</type><block>downloadable/checkout_cart_item_renderer</block><template>multiwishlist/downloadable/checkout/cart/item/default.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"><type>bundle</type><block>bundle/checkout_cart_item_renderer</block><template>multiwishlist/checkout/cart/item/default.phtml</template></action>
+			<action method="addItemRender" ifconfig="multiwishlist/general/enable"> <type>virtual</type><block>checkout/cart_item_renderer</block><template>multiwishlist/checkout/cart/item/default.phtml</template></action>
+		</reference>
+	    <reference name="checkout.cart.crosssell">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/checkout/cart/crosssell.phtml</template></action>
+		</reference>
+	</checkout_cart_index>
+	<catalog_product_compare_index translate="label">
+		<reference name="head">
+		  <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action> 
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+</reference>	
+		 <reference name="catalog.compare.list">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/compare/list.phtml</template></action>
+		 </reference> 
+    </catalog_product_compare_index>
+    
+    <tag_customer_view translate="label">
+       	<reference name="head">
+		 <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action> 
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action> 
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+</reference>	
+        <reference name="customer_view">
+            <action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/tag/customer/view.phtml</template></action>
+        </reference>
+    </tag_customer_view>
+     <catalogsearch_result_index translate="label">
+		 	<reference name="head">
+		  <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+		</reference>
+		  <reference name="search_result_list">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/list.phtml</template></action>
+		 </reference> 
+	</catalogsearch_result_index> 
+	    <catalogsearch_advanced_result translate="label">
+		 	<reference name="head">
+		  <action method="addItem" ifconfig="multiwishlist/general/enablejquery"><type>skin_js</type><script>multiwishlist/js/jquery.min.js</script></action>
+		 <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/noConflict.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.fancybox-1.3.4.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.easing-1.3.pack.js</script></action>
+		  <action method="addItem" ifconfig="multiwishlist/general/enable"><type>skin_js</type><script>multiwishlist/js/fancybox/jquery.mousewheel-3.0.4.pack.js</script></action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/jquery.fancybox-1.3.4.css</stylesheet> </action>
+		  <action method="addCss" ifconfig="multiwishlist/general/enable"><stylesheet>multiwishlist/tabcontent.css</stylesheet></action>	
+		</reference>
+		  <reference name="search_result_list">
+			<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/catalog/product/list.phtml</template></action>
+		 </reference> 
+	</catalogsearch_advanced_result> 
+	<wishlist_index_share translate="label">
+        <reference name="wishlist.sharing">
+          	<action method="setTemplate" ifconfig="multiwishlist/general/enable"><template>multiwishlist/sharing.phtml</template></action>
+        </reference>
+    </wishlist_index_share>
+
+</layout>

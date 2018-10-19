@@ -1,0 +1,51 @@
+<?php
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+?>
+
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+  <li><a  onclick="showWishlist('<?php echo $_product->getId()?>')" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+ <?php endif; ?>
+   <?php
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+?>
+<?php if($_compareUrl) : ?>
+    <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+<?php endif; ?>
+</ul>
+<script type="text/javascript">
+
+	function showWishlist(id){
+	<?php if(! Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+		alert('Please Login first')
+	 <?php } else{ ?>
+		var url = '<?php echo $this->getUrl('multiwishlist/index/productoptions',array('product_id'=>$_product->getId()));?>'+'buyreq/'+jQuery('form').serialize();
+		jQuery.fancybox(
+			{ 
+			   hideOnContentClick : true,
+			   href:url,
+			   type:'iframe',
+			   autoDimensions: true,
+				type : 'iframe',
+			   showTitle: false,
+			   scrolling: 'yes', fitToView: false, 
+			   maxWidth: "90%",
+			   onComplete: function(){
+				jQuery('#fancybox-frame').load(function() { 
+					jQuery('#fancybox-content').height(jQuery(this).contents().find('body').height()-50);
+					jQuery.fancybox.resize();
+				 });
+			   }
+			}
+		);
+ <?php }?>
+	
+	}
+</script>

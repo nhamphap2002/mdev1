@@ -1,0 +1,90 @@
+<?php
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+?>
+<?php
+    /* @var $this Mage_Wishlist_Block_Customer_Wishlist_Items */
+?>
+<?php
+     $columns = $this->getColumns();     
+     $model = Mage::getModel('multiwishlist/wishlistlabels');
+     $multiWishlist = $model->getLabelIds();	
+	 $i = 0;   
+	 foreach ($multiWishlist as $id):
+		 $i++;  
+		 $array = array();
+		 $array =  $model->getWishlistItemsCollection($id);
+		 $mId = $id;	 
+		 if($id == 0)
+			$mId = 'default';		
+		?>
+<div id="view<?php echo $i;?>">
+<div class="wl_actions">
+
+<?php if($i >1):?>
+	<div class="deletewl_link">
+		<button class="button" id="deletewl" title="Delete Wishlist"  type="button" onClick="if(confirm('Do you really want to delete this Wishlist along with all products in it?'))window.location = '<?php echo $this->getUrl('multiwishlist/index/delete', array('id'=>$id));?>';"><span><span>Delete Wishlist</span></span></button></div>
+<?php endif;?>
+<?php if (count($array)): ?>
+<div class="addcartwl_link" >
+		<button class="button" id="cartwl" title="Add All To Cart"  type="button" onClick="window.location = '<?php echo $this->getUrl('multiwishlist/index/addtoCart', array('id'=>$id));?>';"><span><span>Add All To Cart</span></span></button>
+		<button class="button" id="sharewl" title="Share Wishlist"  type="button" onClick="window.location = '<?php echo $this->getUrl('wishlist/index/share', array('mid'=>$mId,'wishlist_id'=>$this->getRequest()->getParam('wishlist_id')));?>';"><span><span>Share Wishlist</span></span></button>
+</div>
+<?php endif;?>
+</div>
+<div class="wltable"> <table class="clean-table linearize-table" id="wishlist-table">
+    <thead>
+		<?php if (count($array)): ?>
+        <tr>
+            <?php
+                /* @var $column Mage_Wishlist_Block_Customer_Wishlist_Item_Column */
+                foreach ($columns as $column):
+                    $_blockName = str_replace('.','-',strtolower($column->getNameInLayout()));
+            ?>
+                <th class="<?php echo $_blockName; ?>"><?php echo $column->getTitle();?></th>
+            <?php endforeach; ?>
+        </tr>
+         <?php endif; ?>
+    </thead>
+    <tbody>
+        <?php if (count($array)): ?>
+            <?php foreach ($array as $item): ?>
+                <tr id="item_<?php echo $item->getId();?>">
+                    <?php
+                        foreach ($columns as $key => $column):
+                            $_blockName = str_replace('.','-',strtolower($column->getNameInLayout()));
+
+                            /* Override default column title in layout, useful for certain cases like select all box */
+                            if ($column->getRwdTitle()) {
+                                $_rwdLabel = $column->getRwdTitle();
+                            } else {
+                                $_rwdLabel = ($column->getTitle()) ? $column->getTitle() : false;
+                            }
+                    ?>
+                        <td class="<?php echo 'wishlist-cell'.$key; ?> <?php echo $_blockName; ?>"<?php if($_rwdLabel): ?> data-rwd-label="<?php echo $_rwdLabel; ?>"<?php endif; ?>><?php $column->setItem($item); echo $column->toHtml($item);?></td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach ?>
+        <?php else: ?>
+            <tr><td colspan="<?php echo count($columns);?>" class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></td></tr>
+        <?php endif; ?>
+    </tbody>
+</table></div>
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml();?>
+<?php endforeach; ?>
+<script type="text/javascript">
+//<![CDATA[
+    decorateTable('wishlist-table');
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getJs();?>
+<?php endforeach; ?>
+//]]>
+</script>
+</div>
+<?php endforeach; ?>

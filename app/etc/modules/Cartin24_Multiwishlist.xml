@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cartin24_Multiwishlist>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Cartin24_Multiwishlist>
+    </modules>
+</config> 

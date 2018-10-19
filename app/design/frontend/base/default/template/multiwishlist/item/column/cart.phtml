@@ -1,0 +1,72 @@
+<?php
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+/* @var $this Mage_Wishlist_Block_Customer_Wishlist_Item_Column_Cart */
+/* @var Mage_Wishlist_Model_Item $item */
+$item = $this->getItem();
+$product = $item->getProduct();
+$options = $this->getChild('customer.wishlist.item.options')
+    ->setItem($item)
+    ->getConfiguredOptions();
+?>
+
+<div class="cart-cell">
+<?php if ($product->isSaleable()): ?>
+    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="button btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+<?php else: ?>
+    <?php if ($product->getIsSalable()): ?>
+        <p class="availability in-stock">
+            <span class="label"><?php echo $this->helper('catalog')->__('Availability:') ?></span>
+            <span class="value"><?php echo $this->helper('catalog')->__('In stock') ?></span>
+        </p>
+    <?php else: ?>
+        <p class="availability out-of-stock">
+            <span class="label"><?php echo $this->helper('catalog')->__('Availability:') ?></span>
+            <span class="value"><?php echo $this->helper('catalog')->__('Out of stock') ?></span>
+        </p>
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+<div class="wishlist_move"> 
+	<p><?php echo $this->__('Move to Wishlist:') ?></p>
+<div class="combo"><select name="wishlist_move" id="wishlist_move<?php echo $item->getId();?>">
+	<option value="0" <?php if($item->getMultiWishlistId() == 0) echo 'selected'; ?>>Main</option>
+	<?php $model = Mage::getModel('multiwishlist/wishlistlabels');
+             $labels = $model->getWishlistLabels();?>
+          <?php  foreach($labels as $label): ?>
+         <option value="<?php echo $label->getId()?>" <?php if($item->getMultiWishlistId() == $label->getId()) echo 'selected'; ?>><?php echo $label->getWishlistName()?></option>
+            <?php endforeach;?>
+	</select></div><div  class="move_btn">
+    <button type="button" title="<?php echo $this->__('Move to Wishlist') ?>" id="move_to_wishlist" onclick="moveToWishlist(<?php echo $item->getId();?>)"  class="button btn-cart"><span><span><?php echo $this->__('Move') ?></span></span></button>
+</div></div><br/>
+<?php if ($product->isVisibleInSiteVisibility()): ?>
+    <p><a class="link-edit button button-secondary" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('Edit') ?></a></p>
+<?php endif ?>
+<?php foreach($this->getSortedChildren() as $childName):?>
+    <?php echo $this->getChildHtml($childName, false);?>
+<?php endforeach;?>
+</div>
+<script type="text/javascript">
+	
+function moveToWishlist(itemid){
+				
+	var loadurl = '<?php echo $this->getUrl('multiwishlist/index/moveToWishlist') ?>';
+	Element.show('loadingmask');
+	new Ajax.Request(loadurl, {
+	method: 'post',
+	parameters: {  itemid: itemid,wishlist: jQuery('#wishlist_move'+itemid).val()},
+	onComplete: function(transport) {
+	   var content = JSON.parse(transport.responseText); 		 
+		 location.reload(); 		 
+		 Element.hide('loadingmask');
+		/*  var container = $('tabcontents');    	
+   		  container.innerHTML = content;*/ 
+		  }
+	});
+		
+}
+</script>

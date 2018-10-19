@@ -1,0 +1,22 @@
+<?php
+/**
+ * Cartin24
+ * @package    Cartin24_MultiWishlist
+ * @copyright  Copyright (c) 2015-2016 Cartin24. (http://www.cartin24.com)
+ * @license    http://opensource.org/licenses/osl-3.0.php   Open Software License (OSL 3.0)
+ */
+?><form action="<?php echo $this->getUrl('multiwishlist/index/create') ?>" method="post" id="wishlist-form-validation">
+<?php echo $this->getBlockHtml('formkey')?>
+<table class="clean-table linearize-table" style="width:100%">
+<tr><td><input id="wlname" class="input-text required-entry" type="text"  placeholder='Enter a new wishlist name here'  name="wlname" style="width:100%"/></td>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td><button class="button"  title="Create Wishlist"  type="submit" ><span><span>Create Wishlist</span></span></button></td></tr>
+</table>
+</form>
+
+ <script type="text/javascript">
+        //<![CDATA[
+        var dataForm = new VarienForm('wishlist-form-validation', true);
+
+//]]>
+</script>

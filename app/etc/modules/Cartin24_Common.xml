@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cartin24 Common 
+ *
+ * @category   Common
+ * @package    Cartin24_Common 
+ * @author     Cartin24 Team <info@cartin24.com>
+ */
+-->
+<config>
+    <modules>
+        <Cartin24_Common>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Cartin24_Common>
+    </modules>
+</config> 
