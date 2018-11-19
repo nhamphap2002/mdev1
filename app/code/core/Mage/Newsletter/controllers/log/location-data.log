@@ -1,0 +1,49 @@
+Time: 31-10-2018 03:10:19Mage_Core_Controller_Request_Http Object
+(
+    [_originalPathInfo:protected] => /newsletter/subscriber/new/email/thang123@gmail.com
+    [_storeCode:protected] => 
+    [_requestString:protected] => /newsletter/subscriber/new/email/thang123@gmail.com
+    [_rewritedPathInfo:protected] => 
+    [_requestedRouteName:protected] => 
+    [_routingInfo:protected] => Array
+        (
+        )
+
+    [_route:protected] => newsletter
+    [_directFrontNames:protected] => 
+    [_controllerModule:protected] => Mage_Newsletter
+    [_isStraight:protected] => 
+    [_beforeForwardInfo:protected] => Array
+        (
+        )
+
+    [_internallyForwarded:protected] => 
+    [_paramSources:protected] => Array
+        (
+            [0] => _GET
+            [1] => _POST
+        )
+
+    [_requestUri:protected] => /newsletter/subscriber/new/email/thang123@gmail.com
+    [_baseUrl:protected] => 
+    [_basePath:protected] => 
+    [_pathInfo:protected] => /newsletter/subscriber/new/email/thang123@gmail.com
+    [_params:protected] => Array
+        (
+            [email] => thang123@gmail.com
+        )
+
+    [_rawBody:protected] => 
+    [_aliases:protected] => Array
+        (
+        )
+
+    [_dispatched:protected] => 1
+    [_module:protected] => newsletter
+    [_moduleKey:protected] => module
+    [_controller:protected] => subscriber
+    [_controllerKey:protected] => controller
+    [_action:protected] => new
+    [_actionKey:protected] => action
+)
+ 

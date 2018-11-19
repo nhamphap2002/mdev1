@@ -1,0 +1,366 @@
+Time: 31-10-2018 07:10:18Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 30
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 58483
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540970312.861
+    [REQUEST_TIME] => 1540970312
+)
+ 
+Time: 31-10-2018 07:10:52Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 20
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 61614
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540972337.347
+    [REQUEST_TIME] => 1540972337
+)
+ 
+Time: 31-10-2018 07:10:55Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 20
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 61858
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540972509.104
+    [REQUEST_TIME] => 1540972509
+)
+ 
+Time: 31-10-2018 07:10:56Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 31
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 61956
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540972575.119
+    [REQUEST_TIME] => 1540972575
+)
+ 
+Time: 31-10-2018 07:10:56Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 23
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 61989
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540972584.487
+    [REQUEST_TIME] => 1540972584
+)
+ 
+Time: 31-10-2018 08:10:03Array
+(
+    [REDIRECT_HTTP_AUTHORIZATION] => 
+    [REDIRECT_MIBDIRS] => E:/xampp/php/extras/mibs
+    [REDIRECT_MYSQL_HOME] => \xampp\mysql\bin
+    [REDIRECT_OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [REDIRECT_PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [REDIRECT_PHPRC] => \xampp\php
+    [REDIRECT_TMP] => \xampp\tmp
+    [REDIRECT_STATUS] => 200
+    [HTTP_AUTHORIZATION] => 
+    [MIBDIRS] => E:/xampp/php/extras/mibs
+    [MYSQL_HOME] => \xampp\mysql\bin
+    [OPENSSL_CONF] => E:/xampp/apache/bin/openssl.cnf
+    [PHP_PEAR_SYSCONF_DIR] => \xampp\php
+    [PHPRC] => \xampp\php
+    [TMP] => \xampp\tmp
+    [HTTP_HOST] => mdev1.tv.net
+    [HTTP_CONNECTION] => keep-alive
+    [CONTENT_LENGTH] => 30
+    [HTTP_CACHE_CONTROL] => max-age=0
+    [HTTP_ORIGIN] => http://mdev1.tv.net
+    [HTTP_UPGRADE_INSECURE_REQUESTS] => 1
+    [CONTENT_TYPE] => application/x-www-form-urlencoded
+    [HTTP_USER_AGENT] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+    [HTTP_ACCEPT] => text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+    [HTTP_REFERER] => http://mdev1.tv.net/
+    [HTTP_ACCEPT_ENCODING] => gzip, deflate
+    [HTTP_ACCEPT_LANGUAGE] => vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5,da;q=0.4
+    [HTTP_COOKIE] => _ga=GA1.2.1984185893.1518192719; __utmc=49335546; __zlcmid=lehE10e0FhzpXG; __utma=49335546.1984185893.1518192719.1522895134.1522997768.6; tk_or=%22%22; tk_lr=%22%22; tk_tc=XI33Wy%2BSp8n8VKnc; _gcl_au=1.1.717203485.1539767217; miroot20=1; store=german; _gid=GA1.2.912473340.1540892056; frontend=vnf9hhbm6217ckciofrostccuk
+    [PATH] => C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\PuTTY\;E:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\GitExtensions\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\TortoiseGit\bin;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps
+    [SystemRoot] => C:\WINDOWS
+    [COMSPEC] => C:\WINDOWS\system32\cmd.exe
+    [PATHEXT] => .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    [WINDIR] => C:\WINDOWS
+    [SERVER_SIGNATURE] => <address>Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13 Server at mdev1.tv.net Port 80</address>
+
+    [SERVER_SOFTWARE] => Apache/2.4.29 (Win32) OpenSSL/1.0.2n PHP/7.1.13
+    [SERVER_NAME] => mdev1.tv.net
+    [SERVER_ADDR] => 127.0.0.1
+    [SERVER_PORT] => 80
+    [REMOTE_ADDR] => 127.0.0.1
+    [DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [REQUEST_SCHEME] => http
+    [CONTEXT_PREFIX] => 
+    [CONTEXT_DOCUMENT_ROOT] => D:/www/mgt/mdev1
+    [SERVER_ADMIN] => postmaster@localhost
+    [SCRIPT_FILENAME] => D:/www/mgt/mdev1/index.php
+    [REMOTE_PORT] => 62598
+    [REDIRECT_URL] => /newsletter/subscriber/new/
+    [GATEWAY_INTERFACE] => CGI/1.1
+    [SERVER_PROTOCOL] => HTTP/1.1
+    [REQUEST_METHOD] => POST
+    [QUERY_STRING] => 
+    [REQUEST_URI] => /newsletter/subscriber/new/
+    [SCRIPT_NAME] => /index.php
+    [PHP_SELF] => /index.php
+    [REQUEST_TIME_FLOAT] => 1540973008.196
+    [REQUEST_TIME] => 1540973008
+)
+ 

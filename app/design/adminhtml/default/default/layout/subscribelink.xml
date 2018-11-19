@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <subscribelink_adminhtml_subscribelinkbackend_index>
+	<reference name="content">
+	  <block type="subscribelink/adminhtml_subscribelinkbackend" name="subscribelinkbackend" template="subscribelink/subscribelinkbackend.phtml"/>
+	</reference>
+  </subscribelink_adminhtml_subscribelinkbackend_index>
+</layout>

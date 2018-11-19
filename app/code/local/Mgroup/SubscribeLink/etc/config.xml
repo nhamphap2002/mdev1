@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_SubscribeLink>
+            <version>0.1.0</version>
+        </Mgroup_SubscribeLink>
+    </modules>
+    <global>
+        <helpers>
+            <subscribelink>
+                <class>Mgroup_SubscribeLink_Helper</class>
+            </subscribelink>
+        </helpers>
+        <blocks>
+            <subscribelink>
+                <class>Mgroup_SubscribeLink_Block</class>
+            </subscribelink>
+            <adminhtml>
+                <rewrite>
+                    <newsletter_queue_grid_renderer_action>Mgroup_SubscribeLink_Block_Adminhtml_Newsletter_Queue_Grid_Renderer_Action</newsletter_queue_grid_renderer_action>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+    <frontend>
+        <routers>
+            <subscribelink>
+                <use>standard</use>
+                <args>
+                    <module>Mgroup_SubscribeLink</module>
+                    <frontName>resubscribe</frontName>
+                </args>
+            </subscribelink>
+        </routers>
+    </frontend>
+</config>
