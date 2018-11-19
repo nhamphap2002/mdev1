@@ -37,7 +37,32 @@
                     </controller_action_predispatch_customer_account_createpost_handler>
                 </observers>
             </controller_action_predispatch_customer_account_createpost>
-
+            <controller_action_predispatch_contacts_index_post> <!-- identifier of the event we want to catch -->
+                <observers>
+                    <controller_action_predispatch_review_product_post_handler> <!-- identifier of the event handler -->
+                        <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+                        <class>recaptcha/observer</class> <!-- observers class alias -->
+                        <method>Validate_Captcha</method>  <!-- observer's method to be called -->
+                        <args></args> <!-- additional arguments passed to observer -->
+                    </controller_action_predispatch_review_product_post_handler>
+                </observers>
+            </controller_action_predispatch_contacts_index_post>
+<!--            <newsletter_subscriber_save_commit_after>
+                <observers>
+                    <mgroup_captcha_newsletter>
+                        <class>Mgroup_Recaptcha_Model_Observer</class>
+                        <method>Validate_Captcha</method>
+                    </mgroup_captcha_newsletter>
+                </observers>
+            </newsletter_subscriber_save_commit_after>	-->
+            <newsletter_subscriber_save_before>
+                <observers>
+                    <mgroup_captcha_newsletter>
+                        <class>Mgroup_Recaptcha_Model_Observer</class>
+                        <method>Validate_Captcha</method>
+                    </mgroup_captcha_newsletter>
+                </observers>
+            </newsletter_subscriber_save_before>	
         </events>
     </global>
 </config> 
