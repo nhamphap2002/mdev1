@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Magento
  *
@@ -23,7 +24,6 @@
  * @copyright  Copyright (c) 2006-2017 X.commerce, Inc. and affiliates (http://www.magento.com)
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-
 require_once 'abstract.php';
 
 /**
@@ -33,8 +33,8 @@ require_once 'abstract.php';
  * @package     Mage_Shell
  * @author      Magento Core Team <core@magentocommerce.com>
  */
-class Mage_Shell_Log extends Mage_Shell_Abstract
-{
+class Mage_Shell_Log extends Mage_Shell_Abstract {
+
     /**
      * Log instance
      *
@@ -47,8 +47,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
      *
      * @return Mage_Log_Model_Log
      */
-    protected function _getLog()
-    {
+    protected function _getLog() {
         if (is_null($this->_log)) {
             $this->_log = Mage::getModel('log/log');
         }
@@ -61,8 +60,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
      * @param int $number
      * @return string
      */
-    protected function _humanCount($number)
-    {
+    protected function _humanCount($number) {
         if ($number < 1000) {
             return $number;
         } else if ($number >= 1000 && $number < 1000000) {
@@ -80,8 +78,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
      * @param int $number
      * @return string
      */
-    protected function _humanSize($number)
-    {
+    protected function _humanSize($number) {
         if ($number < 1000) {
             return sprintf('%d b', $number);
         } else if ($number >= 1000 && $number < 1000000) {
@@ -97,8 +94,41 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
      * Run script
      *
      */
-    public function run()
-    {
+    public function run() {
+        $pathRoot = dirname(__FILE__);
+        file_put_contents($pathRoot.'/test.txt', 'hi');
+        Mage::app("admin"); // run application as admin
+        $resource = Mage::getSingleton('core/resource');
+        $writeConnection = $resource->getConnection('core_write');
+//        $query1 = "truncate table dataflow_batch_export";
+//        $query2 = "truncate table dataflow_batch_import";
+        $query3 = "truncate table log_customer";
+//        $query = "truncate table log_quote";
+        $query4 = "truncate table log_summary";
+        $query5 = "truncate table log_summary_type";
+        $query6 = "truncate table log_url";
+        $query7 = "truncate table log_url_info";
+        $query8 = "truncate table log_visitor";
+        $query9 = "truncate table log_visitor_info";
+        $query10 = "truncate table log_visitor_online";
+        $query11 = "truncate table report_viewed_product_index";
+        $query12 = "truncate table report_compared_product_index";
+        $query13 = "truncate table report_event";
+
+//        $writeConnection->query($query1);
+//        $writeConnection->query($query2);
+        $writeConnection->query($query3);
+        $writeConnection->query($query4);
+        $writeConnection->query($query5);
+        $writeConnection->query($query6);
+        $writeConnection->query($query7);
+        $writeConnection->query($query8);
+        $writeConnection->query($query9);
+        $writeConnection->query($query10);
+        $writeConnection->query($query11);
+        $writeConnection->query($query12);
+        $writeConnection->query($query13);
+
         if ($this->getArg('clean')) {
             $days = $this->getArg('days');
             if ($days > 0) {
@@ -108,7 +138,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
             echo "Log cleaned\n";
         } else if ($this->getArg('status')) {
             $resource = $this->_getLog()->getResource();
-            $adapter  = $resource->getReadConnection();
+            $adapter = $resource->getReadConnection();
             // log tables
             $tables = array(
                 $resource->getTable('log/customer'),
@@ -117,16 +147,14 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
                 $resource->getTable('log/url_table'),
                 $resource->getTable('log/url_info_table'),
                 $resource->getTable('log/quote_table'),
-
                 $resource->getTable('reports/viewed_product_index'),
                 $resource->getTable('reports/compared_product_index'),
                 $resource->getTable('reports/event'),
-
                 $resource->getTable('catalog/compare_item'),
             );
 
-            $rows        = 0;
-            $dataLengh   = 0;
+            $rows = 0;
+            $dataLengh = 0;
             $indexLength = 0;
 
             $line = '-----------------------------------+------------+------------+------------+' . "\n";
@@ -139,7 +167,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
             echo $line;
 
             foreach ($tables as $table) {
-                $query  = $adapter->quoteInto('SHOW TABLE STATUS LIKE ?', $table);
+                $query = $adapter->quoteInto('SHOW TABLE STATUS LIKE ?', $table);
                 $status = $adapter->fetchRow($query);
                 if (!$status) {
                     continue;
@@ -172,8 +200,7 @@ class Mage_Shell_Log extends Mage_Shell_Abstract
      * Retrieve Usage Help Message
      *
      */
-    public function usageHelp()
-    {
+    public function usageHelp() {
         return <<<USAGE
 Usage:  php -f log.php -- [options]
         php -f log.php -- clean --days 1
@@ -185,6 +212,7 @@ Usage:  php -f log.php -- [options]
 
 USAGE;
     }
+
 }
 
 $shell = new Mage_Shell_Log();
