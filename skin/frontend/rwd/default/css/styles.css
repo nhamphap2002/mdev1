@@ -11050,3 +11050,37 @@ a.grdn-tvgghyd_nav_link-active {
         display: block;
     }
 }
+.search-autocomplete{
+    display: block !important;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.form-search .search-autocomplete ul{
+    border: none;
+    margin: 0;
+}
+.form-search .search-autocomplete li{
+    float: none !important;
+}
+.gghyd_head,
+.gghyd_link{
+    padding: 2%;
+}
+.gghyd_image {
+    display: inline-block;
+    max-width: 29%;
+    width: 100%;
+    padding-right: 2%;
+    min-height: 100%;
+}
+.gghyd_image img{
+    max-width: 100%;
+}
+.gghyd_right {
+    display: inline-block;
+    max-width: 69%;
+    min-width: 35%;
+    width: 100%;
+    vertical-align: top;
+    padding-left: 2%;
+}
