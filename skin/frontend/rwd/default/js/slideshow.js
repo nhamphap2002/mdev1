@@ -41,9 +41,5 @@ $j(document).ready(function () {
             next: '.slideshow-next',
             fx: 'scrollHorz'
         });
-        $j('#search_mini_form #search').focus(function (){
-            if($j('#search_autocomplete .search-autocomplete-inner').length==1){
-                $j('#search_autocomplete').show();
-            }
-        })
+        
 });

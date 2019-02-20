@@ -1,0 +1,98 @@
+<config>
+    <sections>
+        <notification_bar translate="label" module="notification_bar">
+            <label>Sticky Notification Bar</label>
+            <tab>shippingrate</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <!--<info>-->
+                    <!--<frontend_model>notification_bar/adminhtml_system_config_fieldset_info</frontend_model>-->
+                    <!--<sort_order>10</sort_order>-->
+                    <!--<show_in_default>1</show_in_default>-->
+                    <!--<show_in_website>1</show_in_website>-->
+                    <!--<show_in_store>1</show_in_store>-->
+                <!--</info>-->
+                <general translate="label">
+                    <label>General Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled>
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <content>
+                            <label>Notification Content</label>
+                            <!--<frontend_type>textarea</frontend_type>-->
+                            <frontend_type>editor</frontend_type>
+                            <frontend_model>Mgroup_Delayorder_Block_Config_Editor</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </content>
+                        <text_color translate="label">
+                            <label>Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </text_color>
+                        <background_color translate="label">
+                            <label>Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>color</validate>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </background_color>
+                        <enabled_scroll>
+                            <label>Enabled On/Off Scroll</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled_scroll>
+                        <!--<custom_css>-->
+                            <!--<label>Custom CSS</label>-->
+                            <!--<frontend_type>textarea</frontend_type>-->
+                            <!--<sort_order>50</sort_order>-->
+                            <!--<show_in_default>1</show_in_default>-->
+                            <!--<show_in_website>1</show_in_website>-->
+                            <!--<show_in_store>1</show_in_store>-->
+                            <!--<depends>-->
+                                <!--<enabled>1</enabled>-->
+                            <!--</depends>-->
+                        <!--</custom_css>-->
+                    </fields>
+                </general>
+            </groups>
+        </notification_bar>
+    </sections>
+</config>

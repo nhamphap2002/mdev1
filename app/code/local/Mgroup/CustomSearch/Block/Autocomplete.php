@@ -29,14 +29,14 @@
  * Autocomplete queries list
  */
 //class Mgroupsearch_CatalogSearch_Block_Autocomplete extends Mage_Core_Block_Abstract
-class Mgroup_MgCatalogSearch_Block_Autocomplete extends Mage_Core_Block_Template {
+class Mgroup_CustomSearch_Block_Autocomplete extends Mage_Core_Block_Template {
 
     protected $_suggestData = null;
     protected $_mgData = null;
 
     protected function _toHtml() {
 
-        $enabled = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/enabled');
+        $enabled = Mage::app()->getStore()->getConfig('custom_search/general/enabled');
         if ($enabled != 1) {
             return parent::_toHtml();
         }
@@ -51,22 +51,20 @@ class Mgroup_MgCatalogSearch_Block_Autocomplete extends Mage_Core_Block_Template
             return $html;
         }
         // Retrieve Suggest options
-        //$rowData=Mage::getModel('autocomplete/autocomplete')->load(1);
-        // $optVal= explode("-",$rowData->getSuggest_val());
-        $products_limit = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/products_limit');
-        $show_price = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/show_price');
-        $show_image = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/show_image');
-        $image_size = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/image_size');
-        $show_rating = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/show_rating');
-        $show_add2cart = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/show_add2cart');
-        $show_short_description = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/show_short_description');
-        $short_description_len = Mage::app()->getStore()->getConfig('mgroup_mgcatalogsearch/general/short_description_len');
-        $headercontent = 'Most relevant searches shown'; //Mage::app()->getStore()->getConfig('mgkautocompletesection/general/headercontent');
-        $footercontent = ''; //Mage::app()->getStore()->getConfig('mgkautocompletesection/general/footercontent');
+
+        $products_limit = Mage::app()->getStore()->getConfig('custom_search/setting/products_limit');
+        $show_price = Mage::app()->getStore()->getConfig('custom_search/setting/show_price');
+        $show_image = Mage::app()->getStore()->getConfig('custom_search/setting/show_image');
+        $image_size = Mage::app()->getStore()->getConfig('custom_search/setting/image_size');
+        $show_rating = Mage::app()->getStore()->getConfig('custom_search/setting/show_rating');
+        $show_add2cart = Mage::app()->getStore()->getConfig('custom_search/setting/show_add2cart');
+        $name_lenght = Mage::app()->getStore()->getConfig('custom_search/setting/name_lenght');
+        $description_length = Mage::app()->getStore()->getConfig('custom_search/setting/description_length');
+
 
         $query = Mage::helper('catalogSearch')->getQuery();
         $query->setStoreId(Mage::app()->getStore()->getId());
-
+        $word = $query->getQueryText();
         if ($query->getQueryText()) {
             if (Mage::helper('catalogSearch')->isMinQueryLength()) {
                 $query->setId(0)
@@ -108,7 +106,7 @@ class Mgroup_MgCatalogSearch_Block_Autocomplete extends Mage_Core_Block_Template
         if (!($count = count($pcollect))) {
 
             $html = '<ul class="search-autocomplete-inner">';
-            $html .= '<div class="magik_head">No Records Found</div>';
+            $html .= '<div class="gghyd_head">No Records Found</div>';
             $html .= '</ul>';
             return $html;
         }
@@ -125,20 +123,26 @@ class Mgroup_MgCatalogSearch_Block_Autocomplete extends Mage_Core_Block_Template
                 $item['row_class'] .= ' last';
             }
             $html .= '<li title="' . $this->htmlEscape($item->getName()) . '" ' . $styleli . '>';
-            $html .= '<a class="gghyd-product-link" href="' . $item->getProductUrl() . ' " >';
             $html .= ' <div class="gghyd_element">';
             $_product = Mage::getModel('catalog/product')->load($item->getId());
-            if ($show_image) {
-                $html .= ' <div class="gghyd_image">';
-                $html .= '<img align="left" src="' . Mage::helper('catalog/image')->init($item, 'small_image')->resize($image_size) . '" alt="' . $this->htmlEscape($item->getImageLabel()) . '" id="image">';
-                $html .= ' </div>';
-            }
+
+            $html .= ' <div class="gghyd_image">';
+            $html .= '<a class="gghyd-product-link" href="' . $item->getProductUrl() . ' " >';
+            $html .= '<img align="left" src="' . Mage::helper('catalog/image')->init($item, 'small_image')->resize($image_size) . '" alt="' . $this->htmlEscape($item->getImageLabel()) . '" id="image">';
+            $html .= '</a>';
+            $html .= ' </div>';
+
             $html .= ' <div class="gghyd_right">';
+            $html .= '<a class="gghyd-product-link" href="' . $item->getProductUrl() . ' " >';
             $pname = $item->getResource()->getAttribute('name')->getFrontend()->getValue($item);
-            if (strlen($pname) > 35)
-                $html .= substr($pname, 0, 35) . "...";
-            else
-                $html .= $pname;
+            if (strlen($pname) > $name_lenght) {
+                $pname = substr($pname, 0, $name_lenght) . "...";
+                $pname = preg_replace("|($word)|Ui", "<strong>$1</strong>", $pname);
+            } else {
+                $pname = preg_replace("|($word)|Ui", "<strong>$1</strong>", $pname);
+            }
+            $html .= $pname;
+            $html .= '</a>';
             if ($show_rating) {
                 $_reviewSummary = $this->getReviewSummary($_product->getId());
                 if ($_reviewSummary->getReviewsCount() > 0) :
@@ -150,107 +154,110 @@ class Mgroup_MgCatalogSearch_Block_Autocomplete extends Mage_Core_Block_Template
                     $html .= '</div>';
                 endif;
             }
-            if ($show_short_description) {
+            if ($_product->getShortDescription()) {
                 $html .= '<div class="short-description">';
-                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getShortDescription()), $short_description_len);
+                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getShortDescription()), $description_length);
+                $html .= '</div>';
+            } else {
+                $html .= '<div class="description">';
+                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getDescription()), $description_length);
                 $html .= '</div>';
             }
-            if ($show_price) {
-                $customer_group = 0;
-                $callforpriceShow = FALSE;
-                if (Mage::helper('customer')->isLoggedIn()) {
-                    $customer_group = Mage::helper('customer')->getCustomer()->getGroupId();
+
+            $customer_group = 0;
+            $callforpriceShow = FALSE;
+            if (Mage::helper('customer')->isLoggedIn()) {
+                $customer_group = Mage::helper('customer')->getCustomer()->getGroupId();
+            }
+
+            $sym = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+            if ($_product->getTypeId() == 'bundle') {
+                $aProductIds = $_product->getTypeInstance()->getChildrenIds($_product->getId());
+                $prices = array();
+                foreach ($aProductIds as $ids) {
+                    foreach ($ids as $id) {
+                        $aProduct = Mage::getModel('catalog/product')->load($id);
+                        $prices[] = $aProduct->getPriceModel()->getPrice($aProduct);
+                    }
                 }
 
-                $sym = Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
-                if ($_product->getTypeId() == 'bundle') {
-                    $aProductIds = $_product->getTypeInstance()->getChildrenIds($_product->getId());
-                    $prices = array();
-                    foreach ($aProductIds as $ids) {
-                        foreach ($ids as $id) {
-                            $aProduct = Mage::getModel('catalog/product')->load($id);
-                            $prices[] = $aProduct->getPriceModel()->getPrice($aProduct);
-                        }
+                krsort($prices);
+                $price = array_shift($prices);
+            } else {
+                $today = time();
+                $toDate = $_product->getSpecialToDate();
+
+                if ($_product->getData('special_price') == "" && ($_product->getFinalPrice() == $_product->getPrice())):
+
+                    $tier_qty_one = 0;
+                    foreach ($_product->getTierPrice() as $tierPrice) {
+
+                        if ($tierPrice['price_qty'] == 1)
+                            $tier_qty_one = $tierPrice['website_price'];
                     }
+                    if ($tier_qty_one > 0):
+                        if (Mage::app()->getStore()->getWebsite()->getId() != 1):
+                            $price = $tier_qty_one;
+                        else:
+                            $price = $tier_qty_one;
+                        endif;
 
-                    krsort($prices);
-                    $price = array_shift($prices);
-                } else {
-                    $today = time();
-                    $toDate = $_product->getSpecialToDate();
+                    else:
+                        if (Mage::app()->getStore()->getWebsite()->getId() != 1):
+                            $price = $_product->getFinalPrice;
+                        else:
+                            $price = $_product->getFinalPrice();
+                        endif;
+                    //echo $_product->getFinalPrice(); 
+                    endif;
+                else:
+                    if ($toDate != '' && $today > strtotime($toDate)):
+                        if (Mage::app()->getStore()->getWebsite()->getId() != 1):
+                            $price = $_product->getFinalPrice;
+                        else:
+                            $price = $_product->getFinalPrice();
+                        endif;
 
-                    if ($_product->getData('special_price') == "" && ($_product->getFinalPrice() == $_product->getPrice())):
 
+                    else:
                         $tier_qty_one = 0;
                         foreach ($_product->getTierPrice() as $tierPrice) {
 
                             if ($tierPrice['price_qty'] == 1)
                                 $tier_qty_one = $tierPrice['website_price'];
                         }
-                        if ($tier_qty_one > 0):
-                            if (Mage::app()->getStore()->getWebsite()->getId() != 1):
-                                $price = $tier_qty_one;
-                            else:
-                                $price = $tier_qty_one;
-                            endif;
 
+                        $new_price = $_product->getFinalPrice();
+                        $old_price = $_product->getPrice();
+
+                        if ($new_price > $tier_qty_one && $tier_qty_one > 0) {
+                            $old_price = $new_price;
+                            $new_price = $tier_qty_one;
+                        } elseif ($tier_qty_one > 0) {
+                            $old_price = $tier_qty_one;
+                        }
+
+                        if (Mage::app()->getStore()->getWebsite()->getId() != 1):
+                            $price = $new_price;
                         else:
-                            if (Mage::app()->getStore()->getWebsite()->getId() != 1):
-                                $price = $_product->getFinalPrice;
-                            else:
-                                $price = $_product->getFinalPrice();
-                            endif;
-                        //echo $_product->getFinalPrice(); 
+                            $price = $new_price;
                         endif;
-                    else:
-                        if ($toDate != '' && $today > strtotime($toDate)):
-                            if (Mage::app()->getStore()->getWebsite()->getId() != 1):
-                                $price = $_product->getFinalPrice;
-                            else:
-                                $price = $_product->getFinalPrice();
-                            endif;
-
-
+                        if (Mage::app()->getStore()->getWebsite()->getId() != 1):
+                            $price = $old_price;
                         else:
-                            $tier_qty_one = 0;
-                            foreach ($_product->getTierPrice() as $tierPrice) {
-
-                                if ($tierPrice['price_qty'] == 1)
-                                    $tier_qty_one = $tierPrice['website_price'];
-                            }
-
-                            $new_price = $_product->getFinalPrice();
-                            $old_price = $_product->getPrice();
-
-                            if ($new_price > $tier_qty_one && $tier_qty_one > 0) {
-                                $old_price = $new_price;
-                                $new_price = $tier_qty_one;
-                            } elseif ($tier_qty_one > 0) {
-                                $old_price = $tier_qty_one;
-                            }
-
-                            if (Mage::app()->getStore()->getWebsite()->getId() != 1):
-                                $price = $new_price;
-                            else:
-                                $price = $new_price;
-                            endif;
-                            if (Mage::app()->getStore()->getWebsite()->getId() != 1):
-                                $price = $old_price;
-                            else:
-                                $price = $old_price;
-                            endif;
+                            $price = $old_price;
                         endif;
                     endif;
-                }
-                $html .= $sym . number_format($price, 2);
+                endif;
             }
+            $html .= $sym . number_format($price, 2);
+
 
             if ($show_add2cart) {
                 $html .= $this->_getAdd2CartHtml($_product);
             }
             $html .= '</div>';
             $html .= '</div>';
-            $html .= '</a>';
             $html .= '</li>';
             $i++;
             if ($i == $products_limit)

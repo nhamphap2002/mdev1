@@ -25,21 +25,81 @@
  */
 /* @var $this Mage_Core_Block_Template */
 /* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
-$catalogSearchHelper =  $this->helper('catalogsearch');
+$catalogSearchHelper = $this->helper('catalogsearch');
 ?>
 
 <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
     <div class="input-box">
         <label for="search"><?php echo $this->__('Search:') ?></label>
-        <input id="search" type="search" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" placeholder="<?php echo $this->quoteEscape($this->__('Search entire store here...')) ?>" />
+        <input id="search" type="search" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text required-entry" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength(); ?>" placeholder="<?php echo $this->quoteEscape($this->__('Search entire store here...')) ?>" />
         <button type="submit" title="<?php echo $this->quoteEscape($this->__('Search')) ?>" class="button search-button"><span><span><?php echo $this->__('Search') ?></span></span></button>
     </div>
 
     <div id="search_autocomplete" class="search-autocomplete"></div>
     <script type="text/javascript">
-    //<![CDATA[
-        var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
+        //<![CDATA[
+        var searchForm = new Varien.searchForm('search_mini_form', 'search', '<?php echo $this->__('enter search keyword') ?>');
+        var $minChars =<?php echo Mage::app()->getStore()->getConfig('custom_search/setting/min_char'); ?>;
+        Varien.searchForm.prototype.initAutocomplete = function (url, destinationElement) {
+            new Ajax.Autocompleter(
+                    this.field,
+                    destinationElement,
+                    url,
+                    {
+                        paramName: this.field.name,
+                        method: 'get',
+                        minChars: $minChars,
+                        updateElement: this._selectAutocompleteItem.bind(this),
+                        onShow: function (element, update) {
+                            if (!update.style.position || update.style.position == 'absolute') {
+                                update.style.position = 'absolute';
+                                Position.clone(element, update, {
+                                    setHeight: false,
+                                    offsetTop: element.offsetHeight
+                                });
+                            }
+                            Effect.Appear(update, {duration: 0});
+                        }
+
+                    }
+            );
+        };
+        Varien.searchForm.prototype._selectAutocompleteItem = function (element) {
+        }
         searchForm.initAutocomplete('<?php echo $catalogSearchHelper->getSuggestUrl() ?>', 'search_autocomplete');
-    //]]>
+        //]]>
+        jQuery(document).ready(function ($) {
+            $('#search_mini_form #search').focus(function () {
+                if ($('#search_autocomplete .search-autocomplete-inner').length == 1) {
+                    $('#search_autocomplete').show();
+                }
+            })
+        });
+
     </script>
 </form>
+<style>
+    .search-autocomplete{
+        border: 1px solid #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/border_color'); ?>;
+    }
+    .form-search .search-autocomplete li{
+        border-bottom: #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/border_color'); ?>;
+    }
+    .gghyd_head,
+    .gghyd_head a,
+    .gghyd_link,
+    .gghyd_link a,
+    .gghyd_right,
+    .gghyd_right a{
+        color: #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/font_color'); ?>;
+    }
+    .gghyd_right strong{
+        color: #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/highlight_color'); ?>;
+    }
+    .gghyd_right:hover{
+        color: #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/font_hover_color'); ?>;
+    }
+    .form-search .search-autocomplete li.selected{
+        background: #<?php echo Mage::app()->getStore()->getConfig('custom_search/general/background_hover_color'); ?>;
+    }
+</style>

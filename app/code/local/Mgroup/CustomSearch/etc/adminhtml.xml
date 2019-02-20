@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <config>
     <acl>
         <resources>
@@ -8,10 +7,9 @@
                         <children>
                             <config>
                                 <children>
-                                    <mgroup_mgcatalogsearch translate="title" module="mgcatalogsearch">
-                                        <title>CatalogSearch</title>
-                                        <sort_order>0</sort_order>
-                                    </mgroup_mgcatalogsearch>
+                                    <custom_search>
+                                        <title>CustomSearch</title>
+                                    </custom_search>
                                 </children>
                             </config>
                         </children>

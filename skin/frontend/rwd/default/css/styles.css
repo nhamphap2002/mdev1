@@ -11050,9 +11050,9 @@ a.grdn-tvgghyd_nav_link-active {
         display: block;
     }
 }
-.search-autocomplete{
-    display: block !important;
-    border: 1px solid #ddd;
+  .search-autocomplete{
+    /*display: block !important;*/
+    /*border: 1px solid #ddd;*/
     border-radius: 5px;
 }
 .form-search .search-autocomplete ul{
@@ -11061,6 +11061,9 @@ a.grdn-tvgghyd_nav_link-active {
 }
 .form-search .search-autocomplete li{
     float: none !important;
+}
+.form-search .search-autocomplete li .button.btn-cart{
+    margin: 5px 0;
 }
 .gghyd_head,
 .gghyd_link{

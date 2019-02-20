@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mgroup_CustomSearch>
+            <version>1.0.0</version>
+        </Mgroup_CustomSearch>
+    </modules>
+    <global>
+        <helpers>
+            <custom_search>
+                <class>Mgroup_CustomSearch_Helper</class>
+            </custom_search>
+        </helpers>
+        <blocks>
+            <catalogsearch>
+                <rewrite>
+                    <autocomplete>Mgroup_CustomSearch_Block_Autocomplete</autocomplete>
+                </rewrite>
+            </catalogsearch>
+        </blocks>
+    </global>
+</config>
