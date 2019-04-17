@@ -1,7 +1,7 @@
 <config>
     <sections>
         <custom_search translate="label" module="custom_search">
-            <label>CustomSearch</label>
+            <label>Custom Search</label>
             <tab>shippingrate</tab>
             <frontend_type>text</frontend_type>
             <sort_order>100</sort_order>

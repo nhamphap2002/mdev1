@@ -74,6 +74,9 @@ $catalogSearchHelper = $this->helper('catalogsearch');
                     $('#search_autocomplete').show();
                 }
             })
+            $(document).on('click', '#search_autocomplete ul li', function () {
+                //location.href = $(this).find('.gghyd-product-link').attr('href');
+            })
         });
 
     </script>

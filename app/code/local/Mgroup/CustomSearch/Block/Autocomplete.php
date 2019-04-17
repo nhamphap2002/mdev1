@@ -36,7 +36,7 @@ class Mgroup_CustomSearch_Block_Autocomplete extends Mage_Core_Block_Template {
 
     protected function _toHtml() {
 
-        $enabled = Mage::app()->getStore()->getConfig('custom_search/general/enabled');
+        $enabled = Mage::app()->getStore()->getConfig('custom_search/setting/enabled');
         if ($enabled != 1) {
             return parent::_toHtml();
         }
@@ -95,12 +95,11 @@ class Mgroup_CustomSearch_Block_Autocomplete extends Mage_Core_Block_Template {
                             ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
                             ->addAttributeToSelect('*')
                             ->addAttributeToFilter('category_id', $catid)
-                            ->addAttributeToSort('relevance', 'DESC')->setPage(1, $products_limit);
+                            ->setOrder('relevance', 'DESC')->setPage(1, $products_limit);
         } else {
-            $this->mgData = Mage::getSingleton('catalogsearch/layer')->getProductCollection()->addAttributeToSort('relevance', 'DESC')->setPage(1, $products_limit);
+            $this->mgData = Mage::getSingleton('catalogsearch/layer')->getProductCollection()->setOrder('relevance', 'DESC')->setPage(1, $products_limit);
         }
 
-        //echo  $this->mgData->getSelect()->__toString();die();  
         $_helper = Mage::helper('catalog/output');
 
         if (!($count = count($pcollect))) {
@@ -154,15 +153,15 @@ class Mgroup_CustomSearch_Block_Autocomplete extends Mage_Core_Block_Template {
                     $html .= '</div>';
                 endif;
             }
-            if ($_product->getShortDescription()) {
-                $html .= '<div class="short-description">';
-                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getShortDescription()), $description_length);
-                $html .= '</div>';
-            } else {
-                $html .= '<div class="description">';
-                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getDescription()), $description_length);
-                $html .= '</div>';
-            }
+//            if ($_product->getShortDescription()) {
+//                $html .= '<div class="short-description">';
+//                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getShortDescription()), $description_length);
+//                $html .= '</div>';
+//            } else {
+//                $html .= '<div class="description">';
+//                $html .= Mage::helper('core/string')->truncate(strip_tags($_product->getDescription()), $description_length);
+//                $html .= '</div>';
+//            }
 
             $customer_group = 0;
             $callforpriceShow = FALSE;
@@ -332,11 +331,12 @@ class Mgroup_CustomSearch_Block_Autocomplete extends Mage_Core_Block_Template {
 
 
         if ($_product->isSaleable() || $_product->getTypeId() == 'downloadable') {
-            $url = $_product->getProductUrl() . '?return_url=' . Mage::getUrl('checkout/cart');
+            //$url = $_product->getProductUrl() . '?return_url=' . Mage::getUrl('checkout/cart');
+            $urlcart = Mage::helper('checkout/cart')->getAddUrl($_product);
 
             $html = '<div class="add2cart">'
                     . '<button type="button" title="' . __('Add to Cart')
-                    . '" class="button btn-cart" onclick="setLocation(\'' . $url . '\'); return false;"><span><span>'
+                    . '" class="button btn-cart" onclick="setLocation(\'' . $urlcart . '\');"><span><span>'
                     . __('Add to Cart')
                     . '</span></span></button></div>';
         } else {
