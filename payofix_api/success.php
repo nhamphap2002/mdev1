@@ -17,26 +17,42 @@
             <div class="alert alert-success" role="alert">
                 <?php
                 include_once 'config.php';
-                $orderid = $_GET['orderid'];
-                $col["status"] = 1;
-                $table = TB_ORDERLINKS;
-                $where = ' id= ' . $orderid;
-                //$db->updateSql($col, $table, $where);
-                $message = "Success";
-                echo $message;
+                $signStr = '';
+                $signStr .= $_REQUEST['IncrementId'];
+                $signStr .= $_REQUEST['currency_code'];
+                $signStr .= $_REQUEST['grand_total'];
+                $signStr .= apiKey;
+                $signInfo = hash('sha256', $signStr);
+                $signature = $_REQUEST['signature'];
+                if ($signInfo == $signature) {
+                    $orderid = $_REQUEST['orderid'];
+                    $col["status"] = 1;
+                    $table = TB_ORDERLINKS;
+                    $where = ' id= ' . $orderid;
+                    //$db->updateSql($col, $table, $where);
+                    $message = "Success";
+                    echo $message;
+                    ?>
+                    <p>Your payment is successful.</p>
+                    <p>The transaction was charged by <strong>Payment Descriptor</strong> on your credit card statement.</p>
+                    <p>** The payment may be processed in a different currency, may not be USD. 
+                        The final amount charged on your card statement will be closed to the original total of your order USD <?php echo $_REQUEST['grand_total'] ?>.
+                        Additional charges may be added by your bank for foreign currency processing. 
+                        (Please note: Pharmaceutical products is a sensitive subject. 
+                        Please keep your order details confidential and DO NOT MENTION THE ORDERED PRODUCTS OR WEBSITE NAME to your bank or credit card company.
+                        Thanks!)
+                    </p>
+                    <p>
+                        For any questions or disputes regarding the transaction, please do not hesitate to contact us.
+                    <p>
+                        <?php
+                    } else {
+                        ?>
+                    <p>Your payment is Failed.</p>
+                    <p>For any questions regarding the transaction, please do not hesitate to contact us.</p
+                    <?php
+                }
                 ?>
-                <p>Your payment is successful.</p>
-                <p>The transaction was charged by <strong>Payment Descriptor</strong> on your credit card statement.</p>
-                <p>** The payment may be processed in a different currency, may not be USD. 
-                    The final amount charged on your card statement will be closed to the original total of your order USD <?php echo $_POST['grand_total'] ?> (get this from payment amount).
-                    Additional charges may be added by your bank for foreign currency processing. 
-                    (Please note: Pharmaceutical products is a sensitive subject. 
-                    Please keep your order details confidential and DO NOT MENTION THE ORDERED PRODUCTS OR WEBSITE NAME to your bank or credit card company.
-                    Thanks!)
-                </p>
-                <p>
-                    For any questions or disputes regarding the transaction, please do not hesitate to contact us.
-                <p>
             </div>
 
         </div>

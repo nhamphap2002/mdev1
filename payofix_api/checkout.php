@@ -39,7 +39,7 @@ if (!empty($_POST)) {
         //If callback is supported on your account
         'callback_url' => URLBASE . "callback.php?orderid=" . $orderid . "&signature=" . $signInfo . "message=error" . "&amount=" . $_POST['grand_total'],
         'fail_url' => URLBASE . "fail.php?orderid=" . $orderid . "&signature=" . $signInfo . "message=error" . "&amount=" . $_POST['grand_total'],
-        'success_url' => URLBASE . "success.php?orderid=" . $orderid . "&signature=" . $signInfo . "&grand_total=" . $_POST['grand_total'],
+        'success_url' => URLBASE . "success.php?orderid=" . $orderid . "&signature=" . $signInfo . "&grand_total=" . $_POST['grand_total'] . '&IncrementId=' . $_POST['IncrementId'] . '&currency_code=' . $_POST['currency_code'],
         //Data submitted
         'firstname' => $_POST['firstname'],
         'lastname' => $_POST['lastname'],
@@ -73,7 +73,10 @@ if (!empty($_POST)) {
         //print_r($res);exit();
         if (isset($res["transaction_id"])) {
             //$message .= "Transaction ID: " . $res["transaction_id"] . " ";
-            saveTransactions($_GET['orderid'], $res["transaction_id"]);
+            $data_request = json_encode($_REQUEST);
+            $data_res = json_encode($res);
+            //print_r($_REQUEST);exit();
+            saveTransactions($_REQUEST['orderid'], $res["transaction_id"], $res["order_number"], $data_request, $data_res);
             $col["status"] = 1;
             $table = TB_ORDERLINKS;
             $where = ' id= ' . $orderid;
@@ -82,6 +85,7 @@ if (!empty($_POST)) {
             $data_email['invoice_number'] = $res["transaction_id"];
             $data_email['customer_email'] = $data['email'];
             $data_email['order_number'] = $_POST['IncrementId'];
+            $data_email['grand_total'] = $_POST['grand_total'];
             sendEmailAdmin($data_email);
         }
         if ($res["success"] === false) {
@@ -98,7 +102,7 @@ if (!empty($_POST)) {
                 $message .= "<p>Your payment is successful.</p>
 <p>The transaction was charged by <strong>Payment Descriptor</strong> on your credit card statement.</p>
 <p>** The payment may be processed in a different currency, may not be USD. 
-The final amount charged on your card statement will be closed to the original total of your order USD " . $_POST['grand_total'] . " (get this from payment amount).
+The final amount charged on your card statement will be closed to the original total of your order USD " . $_POST['grand_total'] . ".
 Additional charges may be added by your bank for foreign currency processing. 
 (Please note: Pharmaceutical products is a sensitive subject. 
 Please keep your order details confidential and DO NOT MENTION THE ORDERED PRODUCTS OR WEBSITE NAME to your bank or credit card company.
@@ -141,12 +145,15 @@ For any questions or disputes regarding the transaction, please do not hesitate 
     }
 }
 
-function saveTransactions($order_id, $transaction_id) {
+function saveTransactions($order_id, $transaction_id, $order_number, $data_request, $data_res) {
+    $arrDataResquest = json_decode($data_request);
+    $arrDataResquest->card_number = substr($arrDataResquest->card_number, (strlen($arrDataResquest->card_number) - 4), 4);
+    $arrDataResquest->card_number = str_pad($arrDataResquest->card_number, 16, '*', STR_PAD_LEFT);
+    $data_request = json_encode($arrDataResquest);
     $resource = Mage::getSingleton('core/resource');
     $writeConnection = $resource->getConnection('core_write');
     $date_now = date("Y-m-d H:i:s");
-    $query = "INSERT INTO `payofix_transactions` (`id`, `order_id`, `transaction_id`, `created_date`) VALUES (NULL, '$order_id', '$transaction_id', '$date_now');";
-
+    $query = "INSERT INTO `payofix_transactions` (`id`, `order_id`, `transaction_id`, `created_date`, `order_number`, `data_request`, `data_response`) VALUES (NULL, '$order_id', '$transaction_id', '$date_now', '$order_number', '$data_request', '$data_res');";
     $writeConnection->query($query);
 }
 

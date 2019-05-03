@@ -14,7 +14,7 @@ include_once 'config.php';
 $table = TB_ORDERLINKS;
 if (!empty($_GET['orderid'])) {
     $orderid = $_GET['orderid'];
-    $where = "WHERE id = " . $orderid . ' AND status = 0';
+    $where = "WHERE id = " . $orderid . ' AND ( status != 1 AND status != 3)';
     $sql = "SELECT * FROM " . $table . " " . $where;
     $db->query($sql);
     $order = $db->loadObject();
@@ -24,7 +24,7 @@ if (!empty($_GET['orderid'])) {
 
         include_once 'form.php';
     } else {
-        echo 'Not found Order!';
+        echo 'Order status paid or pending!';
         exit();
     }
 } else {

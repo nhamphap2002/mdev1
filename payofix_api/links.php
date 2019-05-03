@@ -139,11 +139,11 @@ if (!empty($_SESSION["login"])) {
                                     <!--<input type="password" class="form-control" id="inputPassword" placeholder="Password">-->
                                     <button type="submit" class="btn btn-primary mb-2">Search</button>
                                     <?php
-                                    if (isset($_REQUEST["p"])) {
+                                    //if (isset($_REQUEST["p"])) {
                                         ?>
-                                        <input type="hidden" name="p" id="p" value="<?php echo $_REQUEST["p"]; ?>"> 
+                                        <input type="hidden" name="p" id="p" value="1<?php //echo $_REQUEST["p"]; ?>"> 
                                         <?php
-                                    }
+                                    //}
                                     ?>
                                 </div>
                             </div>
@@ -202,11 +202,14 @@ if (!empty($_SESSION["login"])) {
                                                 <?php
                                                 if ($value->status == 1) {
                                                     echo 'Paid';
-                                                }else if ($value->status == 2) {
-                                                    echo 'Failed';
-                                                }else if ($value->status == 3) {
+                                                } else if ($value->status == 2) {
+                                                    ?>
+                                                        <!--<a href="edit.php?id=<?php //echo $value->id;  ?>">Failed</a>-->
+                                                    Failed
+                                                    <?php
+                                                } else if ($value->status == 3) {
                                                     echo 'Pending';
-                                                }else if ($value->status == 4) {
+                                                } else if ($value->status == 4) {
                                                     echo 'Pending';
                                                 }
                                                 ?>
@@ -233,7 +236,7 @@ if (!empty($_SESSION["login"])) {
                                     <?php
                                     for ($i = 1; $i < ($setLastpage + 1); $i++) {
                                         ?>
-                                        <li class="page-item"><a class="page-link" href="?p=<?php echo $i . $querystring ?>"><?php echo $i ?></a></li>    
+                                        <li class="page-item <?php echo $i == $page ? 'active' : '' ?>"><a class="page-link" href="?p=<?php echo $i . $querystring ?>"><?php echo $i ?></a></li>    
                                             <?php
                                         }
                                         ?>

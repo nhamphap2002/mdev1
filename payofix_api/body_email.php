@@ -8,6 +8,11 @@
     </tr>
     <tr>
         <td class="order-details">
+            <h3>Total: <span class="no-link"><?php echo $data['grand_total'] ?></span></h3>
+        </td>
+    </tr>
+    <tr>
+        <td class="order-details">
             <h3>Customer email: <span class="no-link"><?php echo $data['customer_email'] ?></span></h3>
         </td>
     </tr>
